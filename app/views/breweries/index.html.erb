@@ -2,12 +2,11 @@
 
 <h1>Breweries</h1>
 
+<p>Number of breweries: <%= @breweries.count %></p>
+
 <div id="breweries">
   <% @breweries.each do |brewery| %>
     <%= render brewery %>
-    <p>
-      <%= link_to "Show this brewery", brewery %>
-    </p>
   <% end %>
 </div>
 
