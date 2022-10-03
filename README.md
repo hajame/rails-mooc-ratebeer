@@ -1,24 +1,7 @@
-# README
+# Ratebeer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An exercise Beer rating application, built following [Uni Helsinki Ruby on Rails MOOC](https://github.com/mluukkai/WebPalvelinohjelmointi2022/blob/main/wadror.md) in Autumn 2022.
 
-Things you may want to cover:
+### Application instance running in Fly.io
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://hajame-ratebeer.fly.dev/breweries

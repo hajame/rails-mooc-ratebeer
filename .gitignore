@@ -33,3 +33,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Igrnore Fly.io deployment configuration
+.dockerignore
+Dockerfile
+fly.toml
+lib/tasks/fly.rake
