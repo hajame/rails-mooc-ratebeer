@@ -6,7 +6,15 @@
 
 <div id="breweries">
   <% @breweries.each do |brewery| %>
-    <%= render brewery %>
+     <div id="<%= dom_id brewery %>">
+      <p>
+        <%= link_to brewery.name, brewery %>
+      </p>
+      <p>
+        <strong>Year:</strong>
+        <%= brewery.year %>
+      </p>
+    </div>
   <% end %>
 </div>
 
