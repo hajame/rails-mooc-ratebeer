@@ -6,10 +6,21 @@
 
 <div id="beers">
   <% @beers.each do |beer| %>
-    <%= render beer %>
     <p>
-      <%= link_to "Show this beer", beer %>
+      <strong>Name:</strong>
+      <%= link_to beer.name, beer %>
     </p>
+
+    <p>
+      <strong>Style:</strong>
+      <%= beer.style %>
+    </p>
+
+    <p>
+      <strong>Brewery:</strong>
+      <%= link_to beer.brewery.name, beer.brewery %>
+    </p>
+
   <% end %>
 </div>
 
