@@ -39,3 +39,6 @@
 Dockerfile
 fly.toml
 lib/tasks/fly.rake
+
+# ignore RubyMine configuration
+.idea
