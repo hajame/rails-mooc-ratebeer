@@ -1,13 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Ratings</h1>
+<h1>List of ratings</h1>
 
 <p>Number of ratings: <%= @ratings.count %></p>
 
 <div id="ratings">
   <ul>
     <% @ratings.each do |rating|  %>
-      <li> <%= rating %> </li>
+      <li> <%= rating.beer.name %> <%= rating.score %>  </li>
     <% end %>
   </ul>
 </div>
