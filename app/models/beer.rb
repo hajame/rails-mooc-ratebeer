@@ -12,4 +12,8 @@ class Beer < ApplicationRecord
         sum = ratings.map(&:score).sum
         sum.to_f / ratings.size
     end
+
+    def to_s
+        "#{self.name}, #{self.brewery.name}"
+    end
 end
