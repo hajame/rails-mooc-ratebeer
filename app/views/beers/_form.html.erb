@@ -22,8 +22,7 @@
   </div>
 
   <div>
-    <%= form.label :brewery_id, style: "display: block" %>
-    <%= form.number_field :brewery_id %>
+    <%= form.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %>
   </div>
 
   <div>
