@@ -19,7 +19,7 @@
     Beer has not yet been rated!
   <% else %>
     <p>
-      Beer has <%= beer.ratings.size %> ratings with an average of <%= beer.average_rating %>
+      Beer has <%=pluralize(beer.ratings.count, "rating", plural: "ratings")%> with an average of <%= beer.average_rating %>
     </p>
   <% end %>
 
