@@ -7,7 +7,10 @@
 <div id="ratings">
   <ul>
     <% @ratings.each do |rating|  %>
-      <li> <%= rating.beer.name %> <%= rating.score %>  </li>
+      <li>
+        <%= rating.beer.name %> <%= rating.score %>
+        <%= button_to 'delete', rating, method: :delete %>
+      </li>
     <% end %>
   </ul>
 

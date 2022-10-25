@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :breweries
   get 'kaikki_bisset', to: 'beers#index'
 
-  resources :ratings, only: [:index, :new, :create]
+  resources :ratings, only: [:index, :new, :create, :destroy]
 
   # Defines the root path route ("/")
   root "breweries#index"
