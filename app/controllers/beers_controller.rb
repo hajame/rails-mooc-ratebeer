@@ -13,12 +13,12 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
-    @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Lowalcohol"]
+    set_beer_constants
   end
 
   # GET /beers/1/edit
   def edit
+    set_beer_constants
   end
 
   # POST /beers or /beers.json
@@ -60,6 +60,13 @@ class BeersController < ApplicationController
   end
 
   private
+
+    # Set constants for new/edit beer
+    def set_beer_constants
+      @breweries = Brewery.all
+      @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Lowalcohol"]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_beer
       @beer = Beer.find(params[:id])
