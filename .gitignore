@@ -42,3 +42,6 @@ lib/tasks/fly.rake
 
 # ignore RubyMine configuration
 .idea
+
+# Rubocop downloaded asset
+.rubocop-https---relaxed-ruby-style-rubocop-yml
