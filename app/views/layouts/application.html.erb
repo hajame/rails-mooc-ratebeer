@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ratebeer</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Ratebeer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <div class="navibar">
-      <%= link_to 'breweries', breweries_path %>
-      <%= link_to 'beers', beers_path %>
-      <%= link_to 'ratings', ratings_path %>
-
-    </div>
-    <%= yield %>
-  </body>
+<body>
+<div class="navibar">
+  <%= link_to 'breweries', breweries_path %>
+  <%= link_to 'beers', beers_path %>
+  <%= link_to 'ratings', ratings_path %>
+</div>
+<% if session[:last_rating].nil? %>
+  <p>no ratings given</p>
+<% else %>
+  <p>previous rating: <%= session[:last_rating] %></p>
+<% end %>
+<%= yield %>
+</body>
 </html>
