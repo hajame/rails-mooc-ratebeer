@@ -1,5 +1,5 @@
 class Brewery < ApplicationRecord
-    include RatingAverage
+    include RatingAverage #module mixin
 
     has_many :beers, dependent: :destroy
     has_many :ratings, through: :beers
