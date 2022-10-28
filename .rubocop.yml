@@ -69,4 +69,5 @@ Naming/MethodParameterName:
     - cn
 
 Metrics/BlockLength:
-  Enabled: false
+  Enabled: true
+  Max: 15
