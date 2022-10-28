@@ -17,6 +17,6 @@
   </p>
 
   <p>
-    Brewery has <%= brewery.ratings.count %> ratings with an average of <%= brewery.average_rating %>
+    Brewery has <%=pluralize(brewery.ratings.count, "rating", plural: "ratings")%> with an average of <%= brewery.average_rating %>
   </p>
 </div>
