@@ -4,6 +4,6 @@ An exercise Beer rating application, built following [Uni Helsinki Ruby on Rails
 
 ### Application instance running in Fly.io
 
-*There were problems deploying to Fly.io on Week 2. I will try deploying it again for Week 3. The following link might be broken, or it may still have stuff from Week 1.*
+*There were problems deploying to Fly.io on Week 2. The deployed app is now at the state after Week 3, exercise 3.*
 
-https://hajame-ratebeer.fly.dev/breweries
+https://ratebeer-hajame.fly.dev/
