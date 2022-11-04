@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'kaikki_bisset', to: 'beers#index'
   get 'signup', to: 'users#new'
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
 
   # Defines the root path route ("/")
   root "breweries#index"
