@@ -24,27 +24,27 @@ p {
 }
 
 a:link {
-    color: limegreen;
+    color: yellow;
 }
 
 a:visited {
-    color: green;
+    color: limegreen;
 }
 
 a:hover {
-    color: lime;
+    color: red;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: yellow;
+    color: darkorange;
     background-color: transparent;
     text-decoration: underline;
 }
 
 .navibar {
     padding: 10px;
-    background: darkblue;
+    background: #000069;
 }
 
