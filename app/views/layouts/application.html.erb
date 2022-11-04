@@ -15,11 +15,15 @@
   <%= link_to 'breweries', breweries_path %>
   <%= link_to 'beers', beers_path %>
   <%= link_to 'ratings', ratings_path %>
+  <%= link_to 'users', users_path %>
+  |
+  <% if current_user %>
+    <%= link_to current_user.username, current_user %>
+    <%= link_to 'Rate a new beer', new_rating_path %>
+  <% end %>
 </div>
 
-<% if current_user %>
-  <p><%= current_user.username %> signed in</p>
-<% end %>
+
 
 <%= yield %>
 </body>
