@@ -21,6 +21,9 @@
     <%= link_to current_user.username, current_user %>
     <%= link_to 'Rate a new beer', new_rating_path %>
     <%= link_to 'Sign out', signout_path, data: { "turbo-method": :delete } %>
+  <% else %>
+    <%= link_to 'Sign up', signup_path %>
+    <%= link_to 'Sign in', signin_path %>
   <% end %>
 </div>
 
