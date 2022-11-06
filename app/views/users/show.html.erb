@@ -3,15 +3,32 @@
 <p>
   <strong>Username:</strong>
 </p>
-
 <p>
   <%= @user.username %>
 </p>
-
 <p>
   Has made <%= @user.ratings.count %> ratings,
   average rating <%= @user.average_rating %>
 </p>
+<div id="ratings">
+  <p>
+    <strong>ratings</strong>
+  </p>
+  <ul>
+    <% @user.ratings.each do |rating| %>
+      <li>
+        <%= rating.beer.name %> <%= rating.score %>
+        <%= button_to 'delete', rating, method: :delete,
+                      form: {
+                        data: {
+                          turbo_confirm: "Are you sure you want to delete the following rating?\n#{rating}"
+                        }
+                      }
+        %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
