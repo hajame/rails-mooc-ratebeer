@@ -1,6 +1,18 @@
 <h2>Create new rating</h2>
 
 <%= form_for(@rating) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation" style="color: red">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+        <% @rating.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s) %>
   score: <%= f.number_field :score %>
 
