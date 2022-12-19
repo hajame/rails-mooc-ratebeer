@@ -1,0 +1,2 @@
+class BeerClub < ApplicationRecord
+end
