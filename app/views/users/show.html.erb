@@ -43,10 +43,12 @@
     <% end %>
   </ul>
 </div>
-
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
+<p>
   <%= link_to "Back to users", users_path %>
-
+</p>
+<% if @user == current_user %>
+<p>
+  <%= link_to "Edit this user", edit_user_path(@user) %>
   <%= button_to "Destroy this user", @user, method: :delete %>
-</div>
+</p>
+<% end %>
