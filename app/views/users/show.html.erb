@@ -10,6 +10,18 @@
   Has made <%= @user.ratings.count %> ratings,
   average rating <%= @user.average_rating %>
 </p>
+
+<div id="clubs">
+  <h3>Member of</h3>
+  <ul>
+    <% @user.beer_clubs.each do |beer_club| %>
+      <li>
+        <%= link_to beer_club.name, beer_club %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 <div id="ratings">
   <p>
     <strong>ratings</strong>
