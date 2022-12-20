@@ -10,18 +10,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :beer_club_id, style: "display: block" %>
-    <%= form.text_field :beer_club_id %>
-  </div>
-
-  <div>
+  <% if current_user %>
+    <%= form.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+    <%= form.select :user_id, options_from_collection_for_select([current_user].to_a, :id, :username) %>
     <%= form.submit %>
-  </div>
+  <% end %>
 <% end %>
