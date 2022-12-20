@@ -7,7 +7,9 @@ class User < ApplicationRecord
             uniqueness: true,
             length: { minimum: 3, maximum: 30 }
 
-  validates :password, length: { minimum: 4 }
+  validates :password, length: { minimum: 4 },
+            format: { with: /(.*[A-Z].*\d.*)|(.*\d.*[A-Z].*)/,
+                      message: "must include at least one capital letter (A-Z) and one number (0-9)." }
 
   has_many :ratings
   has_many :memberships
