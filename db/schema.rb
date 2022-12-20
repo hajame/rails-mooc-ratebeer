@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_04_152949) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_20_083128) do
+  create_table "beer_clubs", force: :cascade do |t|
+    t.string "name"
+    t.integer "founded"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "beers", force: :cascade do |t|
     t.string "name"
     t.string "style"
@@ -24,6 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_152949) do
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "beer_club_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beer_club_id"], name: "index_memberships_on_beer_club_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -40,4 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_152949) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "memberships", "beer_clubs"
+  add_foreign_key "memberships", "users"
 end
