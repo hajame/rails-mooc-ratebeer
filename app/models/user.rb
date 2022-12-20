@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :beers, through: :ratings
   has_many :beer_clubs, through: :memberships
+
+  def not_member_of
+    BeerClub.where.not(id: memberships.map(&:beer_club_id))
+  end
 end

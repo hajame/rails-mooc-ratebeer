@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <% if current_user %>
-    <%= form.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+    <%= form.select :beer_club_id, options_from_collection_for_select(@user.not_member_of, :id, :name) %>
     <%= form.select :user_id, options_from_collection_for_select([current_user].to_a, :id, :username) %>
     <%= form.submit %>
   <% end %>
