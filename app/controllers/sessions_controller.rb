@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-    if user.nil?
-      redirect_to signin_path, notice: "User #{params[:username]} does not exist!"
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to user_path(user), notice: "Welcome back!"
     else
-      session[:user_id] = user.id if user
-      redirect_to user, notice: "Welcome back!"
+      redirect_to signin_path, notice: "Username and/or password mismatch"
     end
   end
 
