@@ -57,6 +57,7 @@ class UsersController < ApplicationController
         @users = User.all
         format.html { redirect_to users_url, alert: "Unauthorized!" }
       elsif @user.destroy
+        session[:user_id] = nil
         format.html { redirect_to users_url, notice: "User was successfully destroyed." }
         format.json { head :no_content }
       end
