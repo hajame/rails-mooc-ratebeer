@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if user_params[:username].present? or current_user != @user
+      if user_params[:username].present? || (current_user != @user)
         @users = User.all
         format.html { redirect_to users_url, alert: "Unauthorized!" }
       elsif @user.update(user_params)

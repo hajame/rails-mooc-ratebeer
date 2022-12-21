@@ -22,8 +22,8 @@ class Brewery < ApplicationRecord
   private
 
   def year_cannot_be_in_future
-    if year.present? && year > Date.today.year
-      errors.add(:year, "cannot be in the future")
-    end
+    return unless year.present? && year > Date.today.year
+
+    errors.add(:year, "cannot be in the future")
   end
 end
