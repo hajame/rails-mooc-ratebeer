@@ -113,6 +113,24 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "favourite brewery" do
+    let(:user) { FactoryBot.create(:user) }
+    it "has method for determining favorite brewery" do
+      expect(user).to respond_to(:favorite_brewery)
+    end
+
+    it "without ratings does not have a favorite style" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the only rated brewery if only one rating" do
+      beer = FactoryBot.create(:beer)
+      FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+      expect(user.favorite_brewery).to eq("anonymous")
+    end
+  end
+
   def create_beer_with_rating(object, score)
     beer = FactoryBot.create(:beer)
     FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])

@@ -37,13 +37,21 @@ class User < ApplicationRecord
     style_with_top_avg_score
   end
 
+  def favorite_brewery
+    if ratings.empty?
+      return nil
+    end
+
+    ratings.first.beer.brewery.name
+  end
+
   private
 
   def style_with_top_avg_score
-    scores = scores_by_styles
+    scores_map = scores_by_styles
     top = 0
     result = nil
-    scores.sort.each do |style, scores|
+    scores_map.sort.each do |style, scores|
       avg = scores.sum / scores.length
       if top < avg
         top = avg
