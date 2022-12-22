@@ -44,4 +44,16 @@ RSpec.describe User, type: :model do
       expect(user.average_rating).to eq(15.0)
     end
   end
+
+  describe "favorite beer" do
+    it "has method for determining the favorite_beer" do
+      user = FactoryBot.create(:user)
+      expect(user).to respond_to(:favorite_beer)
+    end
+
+    it "without ratings does not have a favorite beer" do
+      user = FactoryBot.create(:user)
+      expect(user.favorite_beer).to eq(nil)
+    end
+  end
 end

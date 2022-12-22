@@ -7,9 +7,10 @@ class User < ApplicationRecord
             uniqueness: true,
             length: { minimum: 3, maximum: 30 }
 
-  validates :password, length: { minimum: 4 },
-                       format: { with: /(.*[A-Z].*\d.*)|(.*\d.*[A-Z].*)/,
-                                 message: "must include at least one capital letter (A-Z) and one number (0-9)." }
+  validates :password,
+            length: { minimum: 4 },
+            format: { with: /(.*[A-Z].*\d.*)|(.*\d.*[A-Z].*)/,
+                      message: "must include at least one capital letter (A-Z) and one number (0-9)." }
 
   has_many :ratings, dependent: :destroy
   has_many :memberships, dependent: :destroy
@@ -18,5 +19,8 @@ class User < ApplicationRecord
 
   def not_member_of
     BeerClub.where.not(id: memberships.map(&:beer_club_id))
+  end
+
+  def favorite_beer
   end
 end
