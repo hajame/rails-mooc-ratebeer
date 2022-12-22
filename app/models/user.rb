@@ -22,5 +22,10 @@ class User < ApplicationRecord
   end
 
   def favorite_beer
+    if ratings.empty?
+      return nil
+    end
+
+    ratings.order(score: :desc).limit(1).first.beer
   end
 end

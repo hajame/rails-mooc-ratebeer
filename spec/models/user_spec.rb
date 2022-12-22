@@ -46,14 +46,32 @@ RSpec.describe User, type: :model do
   end
 
   describe "favorite beer" do
+    let(:user) { FactoryBot.create(:user) }
+
     it "has method for determining the favorite_beer" do
-      user = FactoryBot.create(:user)
       expect(user).to respond_to(:favorite_beer)
     end
 
     it "without ratings does not have a favorite beer" do
-      user = FactoryBot.create(:user)
       expect(user.favorite_beer).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryBot.create(:beer)
+      FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+      expect(user.favorite_beer).to eq(beer)
+    end
+
+    it "is the one with highest rating if several rated" do
+      beer1 = FactoryBot.create(:beer)
+      beer2 = FactoryBot.create(:beer)
+      beer3 = FactoryBot.create(:beer)
+      FactoryBot.create(:rating, score: 20, beer: beer1, user: user)
+      FactoryBot.create(:rating, score: 25, beer: beer2, user: user)
+      FactoryBot.create(:rating, score: 9, beer: beer3, user: user)
+
+      expect(user.favorite_beer).to eq(beer2)
     end
   end
 end
