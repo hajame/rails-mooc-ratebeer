@@ -34,6 +34,31 @@ class User < ApplicationRecord
       return nil
     end
 
-    ratings.order(score: :desc).limit(1).first.beer.style
+    style_with_top_avg_score
+  end
+
+  private
+
+  def style_with_top_avg_score
+    scores = scores_by_styles
+    top = 0
+    result = nil
+    scores.sort.each do |style, scores|
+      avg = scores.sum / scores.length
+      if top < avg
+        top = avg
+        result = style
+      end
+    end
+    result
+  end
+
+  def scores_by_styles
+    result = {}
+    ratings.each do |r|
+      result[r.beer.style] = [] unless result.key?(r.beer.style)
+      result[r.beer.style].push(r.score)
+    end
+    result
   end
 end

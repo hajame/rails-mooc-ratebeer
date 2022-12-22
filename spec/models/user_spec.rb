@@ -89,32 +89,27 @@ RSpec.describe User, type: :model do
     end
 
     it "is the style with highest rating if several rated" do
-      ipa = FactoryBot.create(:beer, style: "ipa")
-      lager = FactoryBot.create(:beer, style: "lager")
-      weiss = FactoryBot.create(:beer, style: "weiss")
-
-      FactoryBot.create(:rating, beer: ipa, score: 4, user: user)
-      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
-      FactoryBot.create(:rating, beer: weiss, score: 1, user: user)
+      create_beer_with_ratings({ style: "ipa", user: user }, 4)
+      create_beer_with_ratings({ style: "lager", user: user }, 10)
+      create_beer_with_ratings({ style: "weiss", user: user }, 1)
 
       expect(user.favorite_style).to eq("lager")
     end
 
     it "is the style with highest avg rating if rated several rimes" do
-      ipa = FactoryBot.create(:beer, style: "ipa")
-      lager = FactoryBot.create(:beer, style: "lager")
-      weiss = FactoryBot.create(:beer, style: "weiss")
-
-      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
-      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
-
-      FactoryBot.create(:rating, beer: ipa, score: 7, user: user)
-      FactoryBot.create(:rating, beer: ipa, score: 11, user: user)
-
-      FactoryBot.create(:rating, beer: weiss, score: 1, user: user)
-      FactoryBot.create(:rating, beer: weiss, score: 12, user: user)
+      create_beer_with_ratings({ style: "ipa", user: user }, 2, 11, 11)
+      create_beer_with_ratings({ style: "weiss", user: user }, 1, 12, 14)
+      create_beer_with_ratings({ style: "lager", user: user }, 10, 10, 10)
 
       expect(user.favorite_style).to eq("lager")
+    end
+
+    it "is the style with smallest lexicographical style name, if scores are tied" do
+      create_beer_with_ratings({ style: "lager", user: user }, 10, 10, 10)
+      create_beer_with_ratings({ style: "apa", user: user }, 9, 11, 10)
+      create_beer_with_ratings({ style: "ipa", user: user }, 9, 11, 10)
+
+      expect(user.favorite_style).to eq("apa")
     end
   end
 
@@ -127,6 +122,13 @@ RSpec.describe User, type: :model do
   def create_beers_with_many_ratings(object, *scores)
     scores.each do |score|
       create_beer_with_rating(object, score)
+    end
+  end
+
+  def create_beer_with_ratings(object, *scores)
+    beer = FactoryBot.create(:beer, style: object[:style])
+    scores.each do |score|
+      FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
     end
   end
 end
