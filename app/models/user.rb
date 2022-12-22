@@ -28,4 +28,12 @@ class User < ApplicationRecord
 
     ratings.order(score: :desc).limit(1).first.beer
   end
+
+  def favorite_style
+    if ratings.empty?
+      return nil
+    end
+
+    ratings.order(score: :desc).limit(1).first.beer.style
+  end
 end

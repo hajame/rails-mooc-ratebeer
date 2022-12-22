@@ -71,6 +71,53 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "favourite style" do
+    let(:user) { FactoryBot.create(:user) }
+    it "has method for determining favorite style" do
+      expect(user).to respond_to(:favorite_style)
+    end
+
+    it "without ratings does not have a favorite style" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryBot.create(:beer)
+      FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+      expect(user.favorite_style).to eq("lager")
+    end
+
+    it "is the style with highest rating if several rated" do
+      ipa = FactoryBot.create(:beer, style: "ipa")
+      lager = FactoryBot.create(:beer, style: "lager")
+      weiss = FactoryBot.create(:beer, style: "weiss")
+
+      FactoryBot.create(:rating, beer: ipa, score: 4, user: user)
+      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
+      FactoryBot.create(:rating, beer: weiss, score: 1, user: user)
+
+      expect(user.favorite_style).to eq("lager")
+    end
+
+    it "is the style with highest avg rating if rated several rimes" do
+      ipa = FactoryBot.create(:beer, style: "ipa")
+      lager = FactoryBot.create(:beer, style: "lager")
+      weiss = FactoryBot.create(:beer, style: "weiss")
+
+      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
+      FactoryBot.create(:rating, beer: lager, score: 10, user: user)
+
+      FactoryBot.create(:rating, beer: ipa, score: 7, user: user)
+      FactoryBot.create(:rating, beer: ipa, score: 11, user: user)
+
+      FactoryBot.create(:rating, beer: weiss, score: 1, user: user)
+      FactoryBot.create(:rating, beer: weiss, score: 12, user: user)
+
+      expect(user.favorite_style).to eq("lager")
+    end
+  end
+
   def create_beer_with_rating(object, score)
     beer = FactoryBot.create(:beer)
     FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
