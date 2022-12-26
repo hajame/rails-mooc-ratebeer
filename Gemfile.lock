@@ -113,6 +113,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -274,6 +276,7 @@ DEPENDENCIES
   factory_bot_rails
   importmap-rails
   jbuilder
+  launchy
   pg
   pry-byebug
   puma (~> 5.0)
