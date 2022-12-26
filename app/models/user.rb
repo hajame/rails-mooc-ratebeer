@@ -34,7 +34,7 @@ class User < ApplicationRecord
       return nil
     end
 
-    style_with_top_avg_score
+    top_avg_score(scores_by_styles)
   end
 
   def favorite_brewery
@@ -42,34 +42,19 @@ class User < ApplicationRecord
       return nil
     end
 
-    brewery_with_top_avg_score
+    top_avg_score(scores_by_breweries)
   end
 
   private
 
-  def style_with_top_avg_score
-    scores_map = scores_by_styles
+  def top_avg_score(scores_map)
     top = 0
     result = nil
-    scores_map.sort.each do |style, scores|
+    scores_map.sort.each do |key, scores|
       avg = scores.sum / scores.length
       if top < avg
         top = avg
-        result = style
-      end
-    end
-    result
-  end
-
-  def brewery_with_top_avg_score
-    scores_map = scores_by_breweries
-    top = 0
-    result = nil
-    scores_map.sort.each do |brewery, scores|
-      avg = scores.sum / scores.length
-      if top < avg
-        top = avg
-        result = brewery
+        result = key
       end
     end
     result
