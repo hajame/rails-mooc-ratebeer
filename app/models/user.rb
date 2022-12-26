@@ -42,7 +42,7 @@ class User < ApplicationRecord
       return nil
     end
 
-    ratings.first.beer.brewery.name
+    brewery_with_top_avg_score
   end
 
   private
@@ -61,11 +61,34 @@ class User < ApplicationRecord
     result
   end
 
+  def brewery_with_top_avg_score
+    scores_map = scores_by_breweries
+    top = 0
+    result = nil
+    scores_map.sort.each do |brewery, scores|
+      avg = scores.sum / scores.length
+      if top < avg
+        top = avg
+        result = brewery
+      end
+    end
+    result
+  end
+
   def scores_by_styles
     result = {}
     ratings.each do |r|
       result[r.beer.style] = [] unless result.key?(r.beer.style)
       result[r.beer.style].push(r.score)
+    end
+    result
+  end
+
+  def scores_by_breweries
+    result = {}
+    ratings.each do |r|
+      result[r.beer.brewery.name] = [] unless result.key?(r.beer.brewery.name)
+      result[r.beer.brewery.name].push(r.score)
     end
     result
   end
