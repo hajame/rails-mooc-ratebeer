@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "Rating" do
   let!(:brewery) { FactoryBot.create :brewery, name: "koff" }
   let!(:beer1) { FactoryBot.create :beer, name: "iso 3", brewery: brewery }
@@ -7,10 +9,7 @@ describe "Rating" do
   let!(:user) { FactoryBot.create :user }
 
   before :each do
-    visit signin_path
-    fill_in 'username', with: 'Pekka'
-    fill_in 'password', with: 'Foobar1'
-    click_button 'Log in'
+    sign_in username: "Pekka", password: "Foobar1"
   end
 
   it "when given, is registered to the beer and user who is signed in" do
