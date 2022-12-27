@@ -43,6 +43,7 @@ describe "User" do
         FactoryBot.create :rating, user: user, beer: beer1, score: 5
         FactoryBot.create :rating, user: user, beer: beer2, score: 10
 
+
         visit user_path(user)
         expect(page).to have_content "Favorite style: Lager"
       end
