@@ -2,12 +2,10 @@ require 'rails_helper'
 
 include Helpers
 
-describe "User" do
-  before :each do
-    FactoryBot.create :user
-  end
+describe "User page" do
+  let!(:user) { FactoryBot.create :user }
 
-  describe "who has signed up" do
+  describe "when user has signed up signed up" do
     it "can signin with right credentials" do
       sign_in username: "Pekka", password: "Foobar1"
 
@@ -31,6 +29,24 @@ describe "User" do
       expect {
         click_button('Create User')
       }.to change { User.count }.by(1)
+    end
+
+    describe "when navigating on a User page" do
+      it "Sees only ratings done by that user, and no one else" do
+        beer1 = FactoryBot.create :beer, name: "iso 3"
+        beer2 = FactoryBot.create :beer, name: "Karhu"
+        user2 = FactoryBot.create :user, username: "Angela"
+        FactoryBot.create :rating, user: user, beer: beer1, score: 5
+        FactoryBot.create :rating, user: user2, beer: beer2, score: 10
+
+        visit user_path(user)
+        expect(page).to have_content "iso 3 5"
+        expect(page).not_to have_content "Karhu 10"
+
+        visit user_path(user2)
+        expect(page).to have_content "Karhu 10"
+        expect(page).not_to have_content "iso 3 5"
+      end
     end
   end
 end
