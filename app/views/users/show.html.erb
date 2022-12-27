@@ -27,11 +27,11 @@
     <strong>ratings</strong>
   </p>
   <ul>
-    <% @user.ratings.each do |rating| %>
+    <% @user.ratings.sort_by { |r| r.to_s }.each_with_index do |rating, index| %>
       <li>
         <%= rating.beer.name %> <%= rating.score %>
         <% if @user == current_user %>
-          <%= button_to 'delete', rating, method: :delete,
+          <%= button_to 'delete', rating, method: :delete, id: "button_delete_rating_#{index}",
                         form: {
                           data: {
                             turbo_confirm: "Are you sure you want to delete the following rating?\n#{rating}"
