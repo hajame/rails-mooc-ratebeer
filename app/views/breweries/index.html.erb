@@ -1,12 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Breweries</h1>
+<!--Rainbow-coloured title: Breweries-->
+<h1>
+  <span class="block-line">
+    <span style="color:#ff0000;">B</span><span style="color:#ffaa00;">r</span><span style="color:#aaff00;">e</span><span style="color:#00ff00;">w</span><span style="color:#00ffaa;">e</span><span style="color:#00aaff;">r</span><span style="color:#0000ff;">i</span><span style="color:#aa00ff;">e</span><span style="color:#ff00aa;">s</span>
+  </span>
+</h1>
 
 <p>Number of breweries: <%= @breweries.count %></p>
 
 <div id="breweries">
   <% @breweries.each do |brewery| %>
-     <div id="<%= dom_id brewery %>">
+    <div id="<%= dom_id brewery %>">
       <p>
         <%= link_to brewery.name, brewery %>
       </p>
