@@ -32,14 +32,29 @@ describe "User" do
     end
 
     describe "User page" do
-      let!(:beer1) { FactoryBot.create :beer, name: "iso 3" }
-      let!(:beer2) { FactoryBot.create :beer, name: "Karhu" }
+      let!(:beer1) { FactoryBot.create :beer, name: "iso 3", style: "IPA" }
+      let!(:beer2) { FactoryBot.create :beer, name: "Karhu", style: "Lager" }
 
       before :each do
         sign_in username: "Pekka", password: "Foobar1"
       end
 
-      it "Sees only ratings done by that user, and no one else" do
+      it "contains favorite style" do
+        FactoryBot.create :rating, user: user, beer: beer1, score: 5
+        FactoryBot.create :rating, user: user, beer: beer2, score: 10
+
+        visit user_path(user)
+        expect(page).to have_content "Favorite style: Lager"
+      end
+
+      it "contains favorite brewery" do
+        FactoryBot.create :rating, user: user, beer: beer1, score: 5
+
+        visit user_path(user)
+        expect(page).to have_content "Favorite brewery: anonymous"
+      end
+
+      it "contains ratings done by that user, and no one else" do
         user2 = FactoryBot.create :user, username: "Angela"
         FactoryBot.create :rating, user: user, beer: beer1, score: 5
         FactoryBot.create :rating, user: user2, beer: beer2, score: 10
@@ -53,7 +68,7 @@ describe "User" do
         expect(page).not_to have_content "iso 3 5"
       end
 
-      it "Can delete one's own ratings" do
+      it "allows deleting one's own ratings" do
         FactoryBot.create :rating, user: user, beer: beer1, score: 5
         FactoryBot.create :rating, user: user, beer: beer2, score: 10
 
