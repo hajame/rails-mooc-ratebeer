@@ -13,5 +13,5 @@
     <% end %>
   </ul>
 
-  <%= link_to 'Create New Rating', new_rating_path %>
+  <%= link_to 'Create New Rating', new_rating_path unless current_user.nil? %>
 </div>
