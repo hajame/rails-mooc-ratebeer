@@ -1,3 +1,5 @@
+<p style="color: green"><%= notice %></p>
+
 <h1>Beer places search</h1>
 
 <%= form_with url: places_path, method: :post do |form| %>
@@ -6,9 +8,18 @@
 <% end %>
 
 <% if @places %>
-  <ul>
-    <% @places.each do |place| %>
-      <li><%= place.name %></li>
+  <table>
+    <thead>
+    <% Place.rendered_fields.each do |field| %>
+      <th><%= field %></th>
     <% end %>
-  </ul>
+    </thead>
+    <% @places.each do |place| %>
+      <tr>
+        <% Place.rendered_fields.each do |field| %>
+          <td><%= place.send(field) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
