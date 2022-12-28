@@ -6,6 +6,7 @@ describe "Beers page" do
   let!(:brewery) { FactoryBot.create :brewery }
 
   before :each do
+    FactoryBot.create :user
     sign_in username: "Pekka", password: "Foobar1"
     visit beers_path
   end
