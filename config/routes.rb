@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
+  get 'places', to: 'places#index'
+  post 'places', to: 'places#search'
 
   # Defines the root path route ("/")
   root "breweries#index"
