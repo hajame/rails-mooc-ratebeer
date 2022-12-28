@@ -39,3 +39,6 @@
 
 # Rubocop downloaded asset
 .rubocop-https---relaxed-ruby-style-rubocop-yml
+
+# Ignore test coverage folder
+coverage
