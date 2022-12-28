@@ -3,8 +3,8 @@
 <%= render @brewery %>
 
 <div>
-  <%= link_to "Edit this brewery", edit_brewery_path(@brewery) %> |
+  <%= link_to "Edit this brewery", edit_brewery_path(@brewery) unless current_user.nil? %> |
   <%= link_to "Back to breweries", breweries_path %>
 
-  <%= button_to "Destroy this brewery", @brewery, method: :delete %>
+  <%= button_to "Destroy this brewery", @brewery, method: :delete unless current_user.nil? %>
 </div>

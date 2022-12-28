@@ -1,4 +1,5 @@
 class BreweriesController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_brewery, only: %i[show edit update destroy]
 
   # GET /breweries or /breweries.json
