@@ -16,4 +16,15 @@ describe "BeermappingApi" do
     expect(place.name).to eq("Panimoravintola Koulu")
     expect(place.street).to eq("Eerikinkatu 18")
   end
+
+  it "When HTTP GET returns empty, an empty array is returned" do
+    canned_answer = <<-END_OF_STRING
+<?xml version='1.0' encoding='utf-8' ?><bmp_locations><location><id></id><name></name><status></status><reviewlink></reviewlink><proxylink></proxylink><blogmap></blogmap><street></street><city></city><state></state><zip></zip><country></country><phone></phone><overall></overall><imagecount></imagecount></location></bmp_locations>
+    END_OF_STRING
+
+    stub_request(:get, /.*veinrahas/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
+    places = BeermappingApi.places_in("veinrahas")
+    expect(places.size).to eq(0)
+  end
+
 end
