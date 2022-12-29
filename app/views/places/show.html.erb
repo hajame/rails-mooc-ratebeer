@@ -4,10 +4,17 @@
 
   <h2><%= @place.name %></h2>
 
-  <h3>Address</h3>
+  <a target="_blank" href="<%= @place.reviewlink %>">Beermapping review</a>
 
+  <h3>Address</h3>
   <p>
-    <%= "#{@place.street}, #{@place.zip}, #{@place.city}, #{@place.country}" %>
+    <%= "#{@place.street}" %> <br>
+    <%= "#{@place.zip} #{@place.city}, #{@place.country}" %>
+  </p>
+
+  <h3>Phone</h3>
+  <p>
+    <%= "#{@place.phone}" %>
   </p>
 
 </div>

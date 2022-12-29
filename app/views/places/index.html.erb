@@ -10,15 +10,25 @@
 <% if @places %>
   <table>
     <thead>
-    <% Place.rendered_fields.each do |field| %>
-      <th><%= field %></th>
-    <% end %>
+    <th>id</th>
+    <th>name</th>
+    <th>status</th>
+    <th>street</th>
+    <th>city</th>
+    <th>zip</th>
+    <th>country</th>
+    <th>overall</th>
     </thead>
     <% @places.each do |place| %>
       <tr>
-        <% Place.rendered_fields.each do |field| %>
-          <td><%= place.send(field) %></td>
-        <% end %>
+        <td><%= place.id %></td>
+        <td><%= link_to place.name, place_path(place.id) %></td>
+        <td><%= place.status %></td>
+        <td><%= place.street %></td>
+        <td><%= place.city %></td>
+        <td><%= place.zip %></td>
+        <td><%= place.country %></td>
+        <td><%= place.overall %></td>
       </tr>
     <% end %>
   </table>

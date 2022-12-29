@@ -18,8 +18,15 @@ class BeermappingApi
     end
   end
 
-  def self.get_place(_place_id)
-    Rails.cache.fetch("helsinki")[0]
+  def self.get_place(place_id)
+    Rails.cache.fetch(place_id, expires_in: 1.hour) { fetch_place(place_id) }
+  end
+
+  def self.fetch_place(place_id)
+    url = "https://beermapping.com/webservice/locquery/#{key}/"
+    response = HTTParty.get "#{url}#{ERB::Util.url_encode(place_id)}"
+    location = response.parsed_response["bmp_locations"]["location"]
+    Place.new(location)
   end
 
   def self.key
