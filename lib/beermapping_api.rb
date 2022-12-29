@@ -19,6 +19,9 @@ class BeermappingApi
   end
 
   def self.key
-    "145afef662199ad3da4151b5326e66f2"
+    return nil if Rails.env.test?
+    raise 'BEERMAPPING_APIKEY env variable not defined' if ENV['BEERMAPPING_APIKEY'].nil?
+
+    ENV.fetch('BEERMAPPING_APIKEY')
   end
 end
