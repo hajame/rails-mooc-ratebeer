@@ -2,9 +2,25 @@
 
 <%= render @beer %>
 
-<div>
-  <%= link_to "Edit this beer", edit_beer_path(@beer) unless current_user.nil? %> |
-  <%= link_to "Back to beers", beers_path %>
+<% if current_user %>
+  <h4>Rate this beer:</h4>
 
-  <%= button_to "Destroy this beer", @beer, method: :delete unless current_user.nil? %>
-</div>
+  <%= form_with(model: @rating) do |form| %>
+    <%= form.hidden_field :beer_id %>
+    score: <%= form.number_field :score %>
+    <%= form.submit "Create rating" %>
+  <% end %>
+
+  <p>
+    <%= button_to "Destroy this beer", @beer, method: :delete %>
+    <%= link_to "Edit this beer", edit_beer_path(@beer) %>
+  </p>
+
+  <p>
+
+  </p>
+<% end %>
+
+<p>
+  <%= link_to "Back to beers", beers_path %>
+</p>
