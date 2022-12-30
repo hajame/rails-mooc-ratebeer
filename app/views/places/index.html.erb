@@ -8,6 +8,12 @@
 <% end %>
 
 <% if @places %>
+  <h4>The current beer weather in Helsinki</h4>
+
+  <p><%= @weather.temperature %> Celcus</p>
+  <p>img</p>
+  <p>Wind <%= @weather.wind_speed %>, direction: <%= @weather.wind_dir %></p>
+
   <table>
     <thead>
     <th>id</th>
