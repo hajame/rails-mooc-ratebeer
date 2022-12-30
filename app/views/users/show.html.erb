@@ -11,7 +11,7 @@
   average rating <%= @user.average_rating %>
 </p>
 <p>
-  Favorite style: <%= @user.favorite_style %>
+  Favorite style: <%= @user.favorite_style.beer_type unless @user.ratings.empty? %>
 </p>
 <p>
   Favorite brewery: <%= @user.favorite_brewery %>

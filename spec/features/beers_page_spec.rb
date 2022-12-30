@@ -7,6 +7,7 @@ describe "Beers page" do
 
   before :each do
     FactoryBot.create :user
+    FactoryBot.create :style
     sign_in username: "Pekka", password: "Foobar1"
     visit beers_path
   end
@@ -18,7 +19,7 @@ describe "Beers page" do
 
     it "creates a valid beer when valid name is given" do
       fill_in 'beer_name', with: 'SuperBeer'
-      select('Lager', from: 'beer_style')
+      select('Lager', from: 'beer_style_id')
       select('anonymous', from: 'beer_brewery_id')
 
       expect {
@@ -31,7 +32,7 @@ describe "Beers page" do
 
     it "does not create a beer when empty name is given" do
       fill_in 'beer_name', with: ''
-      select('Lager', from: 'beer_style')
+      select('Lager', from: 'beer_style_id')
       select('anonymous', from: 'beer_brewery_id')
       click_button "Create Beer"
 

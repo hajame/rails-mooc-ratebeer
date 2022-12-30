@@ -32,8 +32,9 @@ describe "User" do
     end
 
     describe "User page" do
-      let!(:beer1) { FactoryBot.create :beer, name: "iso 3", style: "IPA" }
-      let!(:beer2) { FactoryBot.create :beer, name: "Karhu", style: "Lager" }
+      ipa = FactoryBot.create :style, beer_type: "IPA", description: "IPA is boring."
+      let!(:beer1) { FactoryBot.create :beer, name: "iso 3", style: ipa }
+      let!(:beer2) { FactoryBot.create :beer, name: "Karhu" }
 
       before :each do
         sign_in username: "Pekka", password: "Foobar1"
@@ -42,7 +43,6 @@ describe "User" do
       it "contains favorite style" do
         FactoryBot.create :rating, user: user, beer: beer1, score: 5
         FactoryBot.create :rating, user: user, beer: beer2, score: 10
-
 
         visit user_path(user)
         expect(page).to have_content "Favorite style: Lager"
