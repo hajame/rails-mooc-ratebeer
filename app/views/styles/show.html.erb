@@ -9,8 +9,8 @@
 </ul>
 
 <div>
-  <%= link_to "Edit this style", edit_style_path(@style) %> |
+  <%= link_to "Edit this style", edit_style_path(@style) unless !current_user %> |
   <%= link_to "Back to styles", styles_path %>
 
-  <%= button_to "Destroy this style", @style, method: :delete %>
+  <%= button_to "Destroy this style", @style, method: :delete unless !current_user %>
 </div>
