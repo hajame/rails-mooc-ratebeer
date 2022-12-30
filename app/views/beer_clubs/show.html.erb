@@ -19,7 +19,15 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.submit "Join the beer club" %>
   <% end %>
+<% elsif current_user %>
+  <%= form_with(model: @membership, method: :delete) do |form| %>
+    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.submit "End the membership" %>
+  <% end %>
+<% end %>
 
+<% if current_user %>
   <p>
     <%= button_to "Destroy this beer club", @beer_club, method: :delete unless current_user.nil? %>
     <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) unless current_user.nil? %> |
@@ -27,5 +35,4 @@
 <% end %>
 <div>
   <%= link_to "Back to beer clubs", beer_clubs_path %>
-
 </div>
