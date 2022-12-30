@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: %i[show edit update destroy]
-
+  before_action :ensure_that_signed_in, except: [:index, :show]
   # GET /memberships or /memberships.json
   def index
     @memberships = Membership.all
@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to membership_url(@membership), notice: "Membership was successfully created." }
+        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "#{@membership.user.username} welcome to the club." }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new, status: :unprocessable_entity }
