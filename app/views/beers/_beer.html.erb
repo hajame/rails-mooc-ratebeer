@@ -7,7 +7,7 @@
 
   <p>
     <strong>Style:</strong>
-    <%= beer.style %>
+    <%= beer.style.beer_type %>
   </p>
 
   <p>
@@ -19,7 +19,8 @@
     Beer has not yet been rated!
   <% else %>
     <p>
-      Beer has <%=pluralize(beer.ratings.count, "rating", plural: "ratings")%> with an average of <%= beer.average_rating %>
+      Beer has <%= pluralize(beer.ratings.count, "rating", plural: "ratings") %> with an average
+      of <%= beer.average_rating %>
     </p>
   <% end %>
 
