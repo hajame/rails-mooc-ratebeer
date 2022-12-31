@@ -1,4 +1,3 @@
-
 <p>
   <strong>Username:</strong>
 </p>
@@ -35,7 +34,7 @@
       <li>
         <%= rating.beer.name %> <%= rating.score %>
         <% if @user == current_user %>
-          <%= button_to 'delete', rating, method: :delete, id: "button_delete_rating_#{index}",
+          <%= button_to 'delete', rating, method: :delete, class: "btn btn-sm btn-secondary", id: "button_delete_rating_#{index}",
                         form: {
                           data: {
                             turbo_confirm: "Are you sure you want to delete the following rating?\n#{rating}"
@@ -53,6 +52,6 @@
 <% if @user == current_user %>
   <p>
     <%= link_to "Change password", edit_user_path(@user) %>
-    <%= button_to "Destroy this user", @user, method: :delete %>
+    <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
   </p>
 <% end %>

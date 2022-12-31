@@ -2,7 +2,7 @@
 
 <%= form_with url: places_path, method: :post do |form| %>
   city <%= form.text_field :city %>
-  <%= form.submit "Search" %>
+  <%= form.submit "Search", class: "btn btn-primary" %>
 <% end %>
 
 <% if @weather %>

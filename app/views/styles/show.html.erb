@@ -11,5 +11,5 @@
   <%= link_to "Edit this style", edit_style_path(@style) unless !current_user %> |
   <%= link_to "Back to styles", styles_path %>
 
-  <%= button_to "Destroy this style", @style, method: :delete unless !current_user %>
+  <%= button_to "Destroy this style", @style, method: :delete, class: "btn btn-danger"  unless !current_user %>
 </div>
