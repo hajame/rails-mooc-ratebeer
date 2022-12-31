@@ -9,6 +9,8 @@ class WeatherApi
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
     res = response.parsed_response
+    return nil if res["current"].nil?
+
     wind_ms = res["current"]["wind_speed"].to_i * 1000 / 3600
     Weather.new location: res["location"]["name"],
                 temperature: res["current"]["temperature"],
