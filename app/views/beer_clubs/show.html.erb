@@ -1,4 +1,3 @@
-
 <%= render @beer_club %>
 
 <div id="members">
@@ -16,19 +15,19 @@
   <%= form_with(model: @membership) do |form| %>
     <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the beer club" %>
+    <%= form.submit "Join the beer club", class: "btn btn-primary" %>
   <% end %>
 <% elsif current_user %>
-  <%= form_with(model: @membership, method: :delete, class: "btn btn-danger" ) do |form| %>
+  <%= form_with(model: @membership, method: :delete) do |form| %>
     <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "End the membership" %>
+    <%= form.submit "End the membership", class: "btn btn-secondary" %>
   <% end %>
 <% end %>
 
 <% if current_user %>
   <p>
-    <%= button_to "Destroy this beer club", @beer_club, method: :delete, class: "btn btn-danger"  unless current_user.nil? %>
+    <%= button_to "Destroy this beer club", @beer_club, method: :delete, class: "btn btn-danger" unless current_user.nil? %>
     <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) unless current_user.nil? %> |
   </p>
 <% end %>
