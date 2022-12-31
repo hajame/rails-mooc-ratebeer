@@ -39,24 +39,38 @@
         <li class="nav-item">
           <%= link_to 'styles', styles_path, { class: "nav-link" } %>
         </li>
-        🍺
         <% if current_user %>
-          <li class="nav-item">
-            <%= link_to current_user.username, current_user, { class: "nav-link" } %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              🍺 <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><%= link_to "Profile", current_user, { class: "dropdown-item" } %></li>
+              <li>
+                <%= link_to "Rate a new beer", new_rating_path, { class: "dropdown-item" } %>
+              </li>
+              <li>
+                <%= link_to "Join a club", new_membership_path, { class: "dropdown-item" } %>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <%= link_to "Sign out", signout_path, class: "dropdown-item", data: { "turbo-method": :delete } %>
+              </li>
+              <li>
+              </li>
+            </ul>
           </li>
+
+
           <li class="nav-item">
-            <%= link_to "Rate a new beer", new_rating_path, { class: "nav-link" } %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Join a club", new_membership_path, { class: "nav-link" } %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign out", signout_path, class: "nav-link", data: { "turbo-method": :delete } %>
+
           </li>
 
         <% else %>
           <li class="nav-item">
-            <%= link_to "Sign up", signup_path, { class: "nav-link" } %>
+            <%= link_to "🍺 Sign up", signup_path, { class: "nav-link" } %>
           </li>
           <li class="nav-item">
             <%= link_to "Sign in", signin_path, { class: "nav-link" } %>
