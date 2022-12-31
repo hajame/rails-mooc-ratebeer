@@ -54,6 +54,11 @@ gem "bootsnap", require: false
 # Makes HTTP requests
 gem 'httparty'
 
+# good-old Bootstrap
+gem 'bootstrap', '~> 5.2.0'
+gem 'jquery-rails'
+gem 'mini_racer'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

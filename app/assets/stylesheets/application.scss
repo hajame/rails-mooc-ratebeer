@@ -14,37 +14,39 @@
  *= require_self
  */
 
-html {
-    background: black;
-    color: white;
+/*html {
+  background: black;
+  color: white;
 }
 
 p {
-    color: white;
+  color: white;
 }
 
 a:link {
-    color: yellow;
+  color: yellow;
 }
 
 a:visited {
-    color: limegreen;
+  color: limegreen;
 }
 
 a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 a:active {
-    color: darkorange;
-    background-color: transparent;
-    text-decoration: underline;
-}
+  color: darkorange;
+  background-color: transparent;
+  text-decoration: underline;
+}*/
 
 .navibar {
-    padding: 10px;
-    background: #000069;
+  padding: 10px;
+  background: #000069;
+  color: white;
 }
 
+@import "bootstrap";
