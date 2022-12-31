@@ -14,7 +14,7 @@
   <% @weather.icon_urls.each do |url| %>
     <img src="<%= url %>" alt="weather_icon">
   <% end %>
-  <p><b>wind</b> <%= @weather.wind_speed %>, <b>direction</b> <%= @weather.wind_dir %></p>
+  <p><b>wind</b> <%= @weather.wind_speed %> m/s, <b>direction</b> <%= @weather.wind_dir %></p>
 <% end %>
 
 <% if @places %>
