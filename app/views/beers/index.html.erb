@@ -1,24 +1,20 @@
-
 <h1>Beers</h1>
 
-<div id="beers">
+<table id="beers" class="table table-dark table-striped">
+  <thead>
+  <th>Beer</th>
+  <th>Style</th>
+  <th>Brewery</th>
+  <th>Rating</th>
+  </thead>
   <% @beers.each do |beer| %>
-    <p>
-      <strong>Name:</strong>
-      <%= link_to beer.name, beer %>
-    </p>
-
-    <p>
-      <strong>Style:</strong>
-      <%= beer.style.beer_type %>
-    </p>
-
-    <p>
-      <strong>Brewery:</strong>
-      <%= link_to beer.brewery.name, beer.brewery %>
-    </p>
-
+    <tr>
+      <td><%= link_to beer.name, beer %></td>
+      <td><%= link_to beer.style.beer_type, beer.style %></td>
+      <td><%= link_to beer.brewery.name, beer.brewery %></td>
+      <td><%= beer.average %></td>
+    </tr>
   <% end %>
-</div>
+</table>
 
 <%= link_to("New beer", new_beer_path) unless current_user.nil? %>
