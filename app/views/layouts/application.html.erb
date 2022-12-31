@@ -68,6 +68,12 @@
 </nav>
 
 <div class="container">
+  <% if notice %>
+    <div class="alert alert-primary" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-sm-8">
       <%= yield %>
