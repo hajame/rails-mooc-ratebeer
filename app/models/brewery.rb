@@ -11,6 +11,10 @@ class Brewery < ApplicationRecord
 
   include RatingAverage # module mixin
 
+  def self.top(limit)
+    Brewery.all.sort_by { |b| -b.average_rating }.take(limit)
+  end
+
   def print_report
     puts name
     puts "established at year #{year}"

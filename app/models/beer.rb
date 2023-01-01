@@ -9,6 +9,10 @@ class Beer < ApplicationRecord
 
   include RatingAverage
 
+  def self.top(limit)
+    Beer.all.sort_by { |b| -b.average_rating }.take(limit)
+  end
+
   def average
     return 0 if ratings.empty?
 
