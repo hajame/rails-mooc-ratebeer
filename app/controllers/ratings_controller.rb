@@ -2,6 +2,7 @@ class RatingsController < ApplicationController
   # GET /ratings or /ratings.json
   def index
     @ratings = Rating.all
+    @recent = Rating.recent
   end
 
   def new

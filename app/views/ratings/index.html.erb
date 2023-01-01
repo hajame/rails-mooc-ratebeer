@@ -1,4 +1,3 @@
-
 <h1>List of ratings</h1>
 
 <p>Number of ratings: <%= @ratings.count %></p>
@@ -11,6 +10,18 @@
       </li>
     <% end %>
   </ul>
-
-  <%= link_to 'Create New Rating', new_rating_path, class: "btn btn-primary" unless current_user.nil? %>
 </div>
+
+<h2>Recent ratings</h2>
+<div id="recent_ratings">
+  <ul>
+    <% @recent.each do |rating| %>
+      <li>
+        <%= rating.beer.name %> <%= rating.score %> <%= link_to rating.user.username, rating.user %> <%= rating.created_at %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<%= link_to 'Create New Rating', new_rating_path, class: "btn btn-primary" unless current_user.nil? %>

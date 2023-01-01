@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include RatingAverage
-
   has_secure_password
 
   validates :username,
@@ -16,6 +14,8 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :beers, through: :ratings
   has_many :beer_clubs, through: :memberships
+
+  include RatingAverage
 
   def not_member_of
     BeerClub.where.not(id: memberships.map(&:beer_club_id)).to_a

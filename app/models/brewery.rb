@@ -10,6 +10,7 @@ class Brewery < ApplicationRecord
   scope :retired, -> { where active: [nil, false] }
 
   include RatingAverage # module mixin
+
   def print_report
     puts name
     puts "established at year #{year}"

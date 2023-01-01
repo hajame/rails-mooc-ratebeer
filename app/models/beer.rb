@@ -1,6 +1,4 @@
 class Beer < ApplicationRecord
-  include RatingAverage
-
   belongs_to :brewery
   belongs_to :style
 
@@ -8,6 +6,8 @@ class Beer < ApplicationRecord
   has_many :raters, through: :ratings, source: :user
 
   validates :name, presence: true
+
+  include RatingAverage
 
   def average
     return 0 if ratings.empty?
