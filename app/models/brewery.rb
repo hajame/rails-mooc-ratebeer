@@ -1,6 +1,4 @@
 class Brewery < ApplicationRecord
-  include RatingAverage # module mixin
-
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
@@ -8,6 +6,10 @@ class Brewery < ApplicationRecord
   validates :year, numericality: { greater_than_or_equal_to: 1040,
                                    only_integer: true }
 
+  scope :active, -> { where active: true }
+  scope :retired, -> { where active: [nil, false] }
+
+  include RatingAverage # module mixin
   def print_report
     puts name
     puts "established at year #{year}"
