@@ -12,13 +12,13 @@ describe "Ratings page" do
     sign_in username: "Pekka", password: "Foobar1"
   end
 
-  it "contains a list of ratings, and their count" do
+  it "contains a list of recent ratings and top raters" do
     FactoryBot.create :rating, user: user, beer: beer1
     FactoryBot.create :rating, user: user, beer: beer2
 
     visit ratings_path
 
-    expect(page).to have_content "Number of ratings: 2"
+    expect(page).to have_content "Pekka 2 ratings"
     expect(page).to have_content "#{beer1.name} 10 Pekka"
     expect(page).to have_content "#{beer2.name} 10 Pekka"
   end
