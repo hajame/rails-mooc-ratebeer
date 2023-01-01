@@ -17,6 +17,10 @@ class User < ApplicationRecord
 
   include RatingAverage
 
+  def self.top(limit)
+    User.all.sort_by { |u| -u.ratings.length }.take(limit)
+  end
+
   def not_member_of
     BeerClub.where.not(id: memberships.map(&:beer_club_id)).to_a
   end

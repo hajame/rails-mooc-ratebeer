@@ -47,6 +47,15 @@
   </table>
 </div>
 
+<h2>Most active users</h2>
+<ol>
+  <% @top_users.each do |user| %>
+    <li>
+      <%= user.username %> <%= pluralize(user.ratings.length, "rating", plural: "ratings") %>
+    </li>
+  <% end %>
+</ol>
+
 <div id="recent_ratings">
   <h2>Recent ratings</h2>
   <ul>
