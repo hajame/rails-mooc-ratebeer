@@ -1,4 +1,3 @@
-
 <h1>Styles</h1>
 
 <div id="styles">
@@ -10,4 +9,4 @@
   <% end %>
 </div>
 
-<%= link_to "New style", new_style_path unless !current_user %>
+<%= link_to "New style", new_style_path, class: "btn btn-primary" unless current_user.nil? %>

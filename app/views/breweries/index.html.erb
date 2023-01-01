@@ -1,4 +1,3 @@
-
 <!--Rainbow-coloured title: Breweries-->
 <h1>
   <span class="block-line">
@@ -6,10 +5,12 @@
   </span>
 </h1>
 
-<p>Number of breweries: <%= @breweries.count %></p>
+<h2>Active</h2>
+
+<p>Number of active breweries: <%= @active_breweries.count %></p>
 
 <div id="breweries">
-  <% @breweries.each do |brewery| %>
+  <% @active_breweries.each do |brewery| %>
     <div id="<%= dom_id brewery %>">
       <p>
         <%= link_to brewery.name, brewery %>
@@ -22,4 +23,25 @@
   <% end %>
 </div>
 
-<%= link_to "New brewery", new_brewery_path unless current_user.nil? %>
+<h2>Retired</h2>
+
+<p>Number of retired breweries: <%= @retired_breweries.count %></p>
+
+<div id="breweries">
+  <% @retired_breweries.each do |brewery| %>
+    <div id="<%= dom_id brewery %>">
+      <p>
+        <%= link_to brewery.name, brewery %>
+      </p>
+      <p>
+        <strong>Year:</strong>
+        <%= brewery.year %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to "List of beers", beers_path %>
+</p>
+<%= link_to "New brewery", new_brewery_path, class: "btn btn-primary" unless current_user.nil? %>
