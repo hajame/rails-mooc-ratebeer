@@ -6,7 +6,7 @@
   <%= form_with(model: @rating) do |form| %>
     <%= form.hidden_field :beer_id %>
     score: <%= form.number_field :score %>
-    <%= form.submit "Create rating", class: "btn btn-primary" %>
+    <%= form.submit "Create rating", class: "btn bg-dark btn-primary" %>
   <% end %>
 
   <p>

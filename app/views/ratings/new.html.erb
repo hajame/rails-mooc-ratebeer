@@ -13,9 +13,9 @@
     </div>
   <% end %>
 
-  <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id), {}, { :class => "form-select mb-3" } %>
+  <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id), {}, { :class => "form-select text-bg-dark  mb-3" } %>
   <%= f.label :score, class: "form-label" %>
-  <%= f.number_field :score, class: "form-control mb-3" %>
+  <%= f.number_field :score, class: "form-control text-bg-dark mb-3" %>
 
-  <%= f.submit class: "btn btn-primary" %>
+  <%= f.submit class: "btn bg-dark btn-primary" %>
 <% end %>

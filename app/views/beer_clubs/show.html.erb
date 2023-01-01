@@ -15,7 +15,7 @@
   <%= form_with(model: @membership) do |form| %>
     <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the beer club", class: "btn btn-primary" %>
+    <%= form.submit "Join the beer club", class: "btn bg-dark btn-primary" %>
   <% end %>
 <% elsif current_user %>
   <%= form_with(model: @membership, method: :delete) do |form| %>

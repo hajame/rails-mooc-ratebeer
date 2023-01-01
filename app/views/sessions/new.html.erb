@@ -5,9 +5,9 @@
 <%= form_with url: session_path, method: :post do |form| %>
 
   <%= form.label :username, class: "form-label" %>
-  <%= form.text_field :username, class: "form-control mb-3" %>
+  <%= form.text_field :username, class: "form-control text-bg-dark  mb-3" %>
   <%= form.label :password, class: "form-label" %>
-  <%= form.password_field :password, class: "form-control mb-3" %>
+  <%= form.password_field :password, class: "form-control text-bg-dark  mb-3" %>
 
-  <%= form.submit "Log in", class: "btn btn-primary" %>
+  <%= form.submit "Log in", class: "btn bg-dark btn-primary" %>
 <% end %>
