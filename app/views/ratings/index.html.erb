@@ -1,63 +1,41 @@
 <h1>Ratings</h1>
 
-<div id="top_threes">
-  <h2>Best breweries</h2>
-  <table id="top_breweries_table" class="table table-dark table-striped">
-    <thead>
-    <th>Brewery</th>
-    <th>Average</th>
+<div id="top_threes" class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-sm-5">
+      <h4 class="text-warning">Best breweries</h4>
+      <%= render 'rating_table', id: "top_breweries_table", title: "Brewery", list: @top_breweries %>
+    </div>
 
-    </thead>
-    <% @top_breweries.each do |brewery| %>
-      <tr>
-        <td><%= link_to brewery.name, brewery %></td>
-        <td><%= "%.1f" % brewery.average_rating %></td>
-      </tr>
-    <% end %>
-  </table>
+    <div class="col-sm-5">
+      <h4>Best beers</h4>
+      <%= render 'rating_table', id: "top_beers_table", title: "Beer", list: @top_beers %>
+    </div>
+  </div>
 
-  <h2>Best beers</h2>
-  <table id="top_beers_table" class="table table-dark table-striped">
-    <thead>
-    <th>Beer</th>
-    <th>Average</th>
+  <div class="row">
+    <div class="col-sm-5">
+      <h4>Best styles</h4>
+      <%= render 'rating_table', id: "top_ratings_table", title: "Rating", list: @top_styles %>
+    </div>
 
-    </thead>
-    <% @top_beers.each do |beer| %>
-      <tr>
-        <td><%= link_to beer.name, beer %></td>
-        <td><%= "%.1f" % beer.average_rating %></td>
-      </tr>
-    <% end %>
-  </table>
+    <div class="col-sm-5">
+      <h4 class="text-warning">Most active users</h4>
+      <ol>
+        <% @top_users.each do |user| %>
+          <li>
+            <%= user.username %> <%= pluralize(user.ratings.length, "rating", plural: "ratings") %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
 
-  <h2>Best styles</h2>
-  <table id="top_styles_table" class="table table-dark table-striped">
-    <thead>
-    <th>Style</th>
-    <th>Average</th>
-
-    </thead>
-    <% @top_styles.each do |style| %>
-      <tr>
-        <td><%= link_to style.beer_type, style %></td>
-        <td><%= "%.1f" % style.average_rating %></td>
-      </tr>
-    <% end %>
-  </table>
 </div>
 
-<h2>Most active users</h2>
-<ol>
-  <% @top_users.each do |user| %>
-    <li>
-      <%= user.username %> <%= pluralize(user.ratings.length, "rating", plural: "ratings") %>
-    </li>
-  <% end %>
-</ol>
 
 <div id="recent_ratings">
-  <h2>Recent ratings</h2>
+  <h4 class="text-warning">Recent ratings</h4>
   <ul>
     <% @recent.each do |rating| %>
       <li>

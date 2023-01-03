@@ -1,0 +1,7 @@
+<table id="<%= local_assigns[:id] %>>" class="table table-dark table-striped">
+  <thead>
+  <th><%= local_assigns[:title] %></th>
+  <th>Average</th>
+  </thead>
+  <%= render partial: 'rating_row', collection: local_assigns[:list], as: :item %>
+</table>

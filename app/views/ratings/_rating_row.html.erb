@@ -1,0 +1,8 @@
+<tr>
+  <% if item.instance_of? Style %>
+    <td><%= link_to item.beer_type, item %></td>
+  <% else %>
+    <td><%= link_to item.name, item %></td>
+  <% end %>
+  <td><%= "%.1f" % item.average_rating %></td>
+</tr>
