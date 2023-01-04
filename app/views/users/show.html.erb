@@ -5,7 +5,7 @@
   <% end %>
 </h1>
 <% if current_user&.admin? %>
-  <%= link_to "change account status", toggle_closed_user_path(@user.id), data: { turbo_method: "post" }, class: "btn bg-dark btn-danger" %>
+  <%= link_to @user.closed ? "Open account" : "Close account", toggle_closed_user_path(@user.id), data: { turbo_method: "post" }, class: "btn bg-dark btn-danger" %>
 <% end %>
 <p>
   Has made <%= @user.ratings.count %> ratings,
