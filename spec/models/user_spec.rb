@@ -119,7 +119,7 @@ RSpec.describe User, type: :model do
       beer = FactoryBot.create(:beer)
       FactoryBot.create(:rating, score: 20, beer: beer, user: user)
 
-      expect(user.favorite_brewery).to eq("anonymous")
+      expect(user.favorite_brewery.name).to eq("anonymous")
     end
 
     it "is the brewery with highest rated beer if several are rated" do
@@ -132,7 +132,7 @@ RSpec.describe User, type: :model do
       beer3 = create_brewrery_with_beer "DEF Brew"
       rating_for(beer3, 19)
 
-      expect(user.favorite_brewery).to eq("ABC Brew")
+      expect(user.favorite_brewery.name).to eq("ABC Brew")
     end
 
     it "is the brewery with highest avg rated beer if several are rated" do
@@ -146,7 +146,7 @@ RSpec.describe User, type: :model do
       rating_for(beer2, 21)
       rating_for(beer2, 21)
 
-      expect(user.favorite_brewery).to eq("ABC Brew")
+      expect(user.favorite_brewery.name).to eq("ABC Brew")
     end
 
     it "is brewery with highest avg rating among ALL beers" do
@@ -166,7 +166,7 @@ RSpec.describe User, type: :model do
       rating_for(beer4, 20)
       rating_for(beer4, 20)
 
-      expect(user.favorite_brewery).to eq("ABC Brew")
+      expect(user.favorite_brewery.name).to eq("ABC Brew")
     end
   end
 

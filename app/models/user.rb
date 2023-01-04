@@ -41,23 +41,23 @@ class User < ApplicationRecord
   def favorite_style
     return nil if ratings.empty?
 
-    style_ratings = ratings.group_by { |r| r.beer.style }
-    averages = style_ratings.map do |style, ratings|
-      { style:, score: average_of(ratings) }
+    grouped_ratings = ratings.group_by { |r| r.beer.style }
+    averages = grouped_ratings.map do |group, ratings|
+      { group:, score: average_of(ratings) }
     end
 
-    averages.max_by { |r| r[:score] }[:style]
+    averages.max_by { |r| r[:score] }[:group]
   end
 
   def favorite_brewery
     return nil if ratings.empty?
 
-    brewery_ratings = ratings.group_by { |r| r.beer.brewery }
-    averages = brewery_ratings.map do |brewery, ratings|
-      { style: brewery, score: average_of(ratings) }
+    grouped_ratings = ratings.group_by { |r| r.beer.brewery }
+    averages = grouped_ratings.map do |group, ratings|
+      { group:, score: average_of(ratings) }
     end
 
-    averages.max_by { |r| r[:score] }[:style]
+    averages.max_by { |r| r[:score] }[:group]
   end
 
   def average_of(ratings)
