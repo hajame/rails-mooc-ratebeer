@@ -8,6 +8,8 @@ class BeermappingApi
     url = "https://beermapping.com/webservice/loccity/#{key}/"
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
+    return [] if response.parsed_response["bmp_locations"].nil?
+
     locations = response.parsed_response["bmp_locations"]["location"]
 
     return [] if locations.is_a?(Hash) && locations["id"].nil?

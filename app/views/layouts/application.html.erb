@@ -83,9 +83,10 @@
 
 <div class="container">
   <% if notice %>
-    <div class="alert alert-primary" role="alert">
-      <%= notice %>
-    </div>
+    <div class="alert text-bg-primary" role="alert"> <%= notice %> </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert text-bg-danger" role="alert"> <%= alert %> </div>
   <% end %>
 
   <div class="row">
