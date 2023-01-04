@@ -2,6 +2,9 @@
   <p>
     <strong>Username:</strong>
     <%= user.username %>
+    <% if user.closed? %>
+      <span class="badge bg-secondary">closed</span>
+    <% end %>
   </p>
 
 </div>

@@ -1,9 +1,9 @@
-<p>
-  <strong>Username:</strong>
-</p>
-<p>
-  <%= @user.username %>
-</p>
+<h1>
+  User:  <%= @user.username %>
+  <% if @user.closed? %>
+    <span class="badge bg-secondary">closed</span>
+  <% end %>
+</h1>
 <p>
   Has made <%= @user.ratings.count %> ratings,
   average rating <%= @user.average_rating %>
