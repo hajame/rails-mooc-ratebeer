@@ -4,17 +4,15 @@
   <h4>Rate this beer:</h4>
 
   <%= form_with(model: @rating) do |form| %>
-    <%= form.hidden_field :beer_id %>
-    score: <%= form.number_field :score %>
-    <%= form.submit "Create rating", class: "btn bg-dark btn-primary" %>
+    <%= form.hidden_field :beer_id, class: "form-label" %>
+    score: <%= form.number_field :score, class: "form-control text-bg-dark  mb-3" %>
+    <%= form.submit "Create rating", class: "btn bg-dark btn-primary mb-3" %>
   <% end %>
-
-  <p>
-    <%= button_to "Destroy this beer", @beer, method: :delete, class: "btn btn-danger"  %>
-    <%= link_to "Edit this beer", edit_beer_path(@beer) %>
-  </p>
 <% end %>
 
+<p>
+  <%= edit_and_destroy_buttons(@beer) %>
+</p>
 <p>
   <%= link_to "Back to beers", beers_path %>
 </p>

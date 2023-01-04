@@ -1,5 +1,6 @@
 class StylesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_is_admin, only: [:destroy]
   before_action :set_style, only: %i[show edit update destroy]
 
   # GET /styles or /styles.json
