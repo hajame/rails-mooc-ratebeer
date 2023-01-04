@@ -39,51 +39,28 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    if ratings.empty?
-      return nil
+    return nil if ratings.empty?
+
+    style_ratings = ratings.group_by { |r| r.beer.style }
+    averages = style_ratings.map do |style, ratings|
+      { style:, score: average_of(ratings) }
     end
 
-    top_avg_score(scores_by_styles)
+    averages.max_by { |r| r[:score] }[:style]
   end
 
   def favorite_brewery
-    if ratings.empty?
-      return nil
+    return nil if ratings.empty?
+
+    brewery_ratings = ratings.group_by { |r| r.beer.brewery }
+    averages = brewery_ratings.map do |brewery, ratings|
+      { style: brewery, score: average_of(ratings) }
     end
 
-    top_avg_score(scores_by_breweries)
+    averages.max_by { |r| r[:score] }[:style]
   end
 
-  private
-
-  def top_avg_score(scores_map)
-    top = 0
-    result = nil
-    scores_map.sort.each do |key, scores|
-      avg = scores.sum / scores.length
-      if top < avg
-        top = avg
-        result = key
-      end
-    end
-    result
-  end
-
-  def scores_by_styles
-    result = {}
-    ratings.each do |r|
-      result[r.beer.style] = [] unless result.key?(r.beer.style)
-      result[r.beer.style].push(r.score)
-    end
-    result
-  end
-
-  def scores_by_breweries
-    result = {}
-    ratings.each do |r|
-      result[r.beer.brewery.name] = [] unless result.key?(r.beer.brewery.name)
-      result[r.beer.brewery.name].push(r.score)
-    end
-    result
+  def average_of(ratings)
+    ratings.sum(&:score).to_f / ratings.count
   end
 end
