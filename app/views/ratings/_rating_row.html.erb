@@ -4,5 +4,5 @@
   <% else %>
     <td><%= link_to item.name, item %></td>
   <% end %>
-  <td><%= "%.1f" % item.average_rating %></td>
+  <td><%= round(item.average_rating) %></td>
 </tr>

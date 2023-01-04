@@ -1,8 +1,6 @@
 <%= render @brewery %>
 
-<div>
-  <%= link_to "Edit this brewery", edit_brewery_path(@brewery) unless current_user.nil? %> |
-  <%= link_to "Back to breweries", breweries_path %>
-
-  <%= button_to "Destroy this brewery", @brewery, method: :delete, class: "btn btn-danger"  unless current_user.nil? %>
-</div>
+<p>
+  <%= edit_and_destroy_buttons(@brewery) %>
+</p>
+<%= link_to "Back to breweries", breweries_path %>
