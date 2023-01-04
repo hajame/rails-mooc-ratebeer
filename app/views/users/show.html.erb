@@ -4,6 +4,7 @@
     <span class="badge bg-secondary">closed</span>
   <% end %>
 </h1>
+<%= link_to "change account status", toggle_closed_user_path(@user.id), data: { turbo_method: "post" }, class: "btn bg-dark btn-danger" %>
 <p>
   Has made <%= @user.ratings.count %> ratings,
   average rating <%= @user.average_rating %>

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :styles
   resources :memberships
   resources :beer_clubs
-  resources :users
+  resources :users do
+    post 'toggle_closed', on: :member
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resource :session, only: [:new, :create, :destroy]
