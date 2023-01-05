@@ -4,6 +4,8 @@
 //= require bootstrap-sprockets
 import "@hotwired/turbo-rails"
 import "controllers"
-import { beers } from "custom/utils"
+import { beers } from "custom/beer_table"
+import { breweries } from "custom/brewery_table"
 
 beers()
+breweries()
