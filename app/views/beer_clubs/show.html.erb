@@ -17,7 +17,7 @@
     <% @beer_club.applicants.each do |user| %>
       <li>
         <%= link_to user.username, user %>
-        <% if current_user.confirmed_clubs.include? @beer_club %>
+        <% if current_user && current_user.confirmed_clubs.include?(@beer_club) %>
           <%= form_with url: confirm_membership_beer_club_path do |form| %>
             <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
             <%= form.hidden_field :user_id, value: user.id %>
