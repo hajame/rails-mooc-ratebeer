@@ -39,6 +39,23 @@ BREWS.sortByName = () => {
     return a.name.toUpperCase().localeCompare(b.name.toUpperCase())
   })
 }
+BREWS.sortByFounded = () => {
+  BREWS.list.sort((a, b) => {
+    return a.year - b.year
+  })
+}
+
+BREWS.sortByBeerCount = () => {
+  BREWS.list.sort((a, b) => {
+    return a.beers.count - b.beers.count
+  })
+}
+
+BREWS.sortByActive = () => {
+  BREWS.list.sort((a, b) => {
+    return Number(a.active) - Number(b.active)
+  })
+}
 
 const breweries = () => {
   if (document.querySelectorAll("#brewerytable").length < 1) return
@@ -46,6 +63,24 @@ const breweries = () => {
   document.getElementById("name").addEventListener("click", (e) => {
     e.preventDefault()
     BREWS.sortByName()
+    BREWS.show()
+  })
+
+  document.getElementById("founded").addEventListener("click", (e) => {
+    e.preventDefault()
+    BREWS.sortByFounded()
+    BREWS.show()
+  })
+
+  document.getElementById("beer_count").addEventListener("click", (e) => {
+    e.preventDefault()
+    BREWS.sortByBeerCount()
+    BREWS.show()
+  })
+
+  document.getElementById("active").addEventListener("click", (e) => {
+    e.preventDefault()
+    BREWS.sortByActive()
     BREWS.show()
   })
 
