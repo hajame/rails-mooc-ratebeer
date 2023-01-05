@@ -46,6 +46,14 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+  def favorite_beer_in_memory
+    if ratings.empty?
+      return nil
+    end
+
+    ratings.max_by(&:score).beer
+  end
+
   def favorite_style
     favourite(:style)
   end
