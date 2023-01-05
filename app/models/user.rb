@@ -11,7 +11,7 @@ class User < ApplicationRecord
                       message: "must include at least one capital letter (A-Z) and one number (0-9)." }
 
   has_many :ratings, dependent: :destroy
-  has_many :memberships, -> { where confirmed: true }, dependent: :destroy
+  has_many :memberships, dependent: :destroy
   has_many :beers, through: :ratings
   has_many :beer_clubs, through: :memberships
 
