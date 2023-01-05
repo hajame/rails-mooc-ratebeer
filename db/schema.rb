@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_04_081620) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_05_120329) do
   create_table "beer_clubs", force: :cascade do |t|
     t.string "name"
     t.integer "founded"
@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_081620) do
     t.integer "beer_club_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "confirmed", default: false
     t.index ["beer_club_id", "user_id"], name: "index_memberships_on_beer_club_id_and_user_id", unique: true
     t.index ["beer_club_id"], name: "index_memberships_on_beer_club_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
