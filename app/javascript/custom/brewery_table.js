@@ -11,6 +11,16 @@ const createTableRow = (brewery) => {
   const name = tr.appendChild(document.createElement("td"))
   name.innerHTML = brewery.name
 
+  const founded = tr.appendChild(document.createElement("td"))
+  founded.innerHTML = brewery.year
+
+  const beerCount = tr.appendChild(document.createElement("td"))
+  beerCount.innerHTML = brewery.beers.count
+
+  const active = tr.appendChild(document.createElement("td"))
+  active.innerHTML = brewery.active ? "active" : "retired"
+
+
   return tr
 }
 
