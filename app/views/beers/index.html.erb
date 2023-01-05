@@ -2,10 +2,10 @@
 
 <table id="beers" class="table table-dark table-striped">
   <thead>
-  <th>Beer</th>
-  <th>Style</th>
-  <th>Brewery</th>
-  <th>Rating</th>
+  <th><%= link_to "Name", beers_path(order: "name") %></th>
+  <th><%= link_to "Style", beers_path(order: "style") %></th>
+  <th><%= link_to "Brewery", beers_path(order: "brewery") %></th>
+  <th><%= link_to "Rating", beers_path(order: "rating") %></th>
   </thead>
   <% @beers.each do |beer| %>
     <tr>
