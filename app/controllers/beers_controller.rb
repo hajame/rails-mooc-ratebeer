@@ -16,7 +16,7 @@ class BeersController < ApplicationController
              end
   end
 
-  # returns beers in JSON only
+  # GET /beerlist
   def list
   end
 
