@@ -13,12 +13,6 @@ class Beer < ApplicationRecord
     Beer.all.sort_by { |b| -b.average_rating }.take(limit)
   end
 
-  def average
-    return 0 if ratings.empty?
-
-    ratings.map(&:score).sum / ratings.count.to_f
-  end
-
   def to_s
     "#{name}, #{brewery.name}"
   end
