@@ -72,7 +72,13 @@ class BeerClubsController < ApplicationController
     end
   end
 
+  # POST /beer_clubs/1/confirm_membership
   def confirm_membership
+    unless current_user.confirmed_clubs.map(&:id).include? params[:beer_club_id].to_i
+      redirect_to beer_club_url, alert: "Only members can accept membership requests."
+      return
+    end
+
     user = User.find(params[:user_id])
 
     membership = user.memberships.find_by(params[:beer_club_id])
