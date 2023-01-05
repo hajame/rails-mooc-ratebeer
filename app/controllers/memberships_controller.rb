@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "#{@membership.user.username} welcome to the club." }
+        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "Your application to the club has been received. Let's hope someone notices it..." }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new, status: :unprocessable_entity }

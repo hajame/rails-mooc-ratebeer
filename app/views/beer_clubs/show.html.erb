@@ -15,6 +15,7 @@
   <h4>Membership applications</h4>
   <ul>
     <% @beer_club.applicants.each do |user| %>
+      <!-- TODO: Confirm button is on the same row as username -->
       <li>
         <%= link_to user.username, user %>
         <% if current_user && current_user.confirmed_clubs.include?(@beer_club) %>
