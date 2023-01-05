@@ -72,6 +72,16 @@ class BeerClubsController < ApplicationController
     end
   end
 
+  def confirm_membership
+    user = User.find(params[:user_id])
+
+    membership = user.memberships.find_by(params[:beer_club_id])
+    membership.confirmed = true
+    membership.save
+
+    redirect_to beer_club_url, notice: "Accepted #{user.username} to the club!"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

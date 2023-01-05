@@ -17,6 +17,11 @@
     <% @beer_club.applicants.each do |user| %>
       <li>
         <%= link_to user.username, user %>
+        <%= form_with url: confirm_membership_beer_club_path do |form| %>
+          <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+          <%= form.hidden_field :user_id, value: user.id %>
+          <%= form.submit "Confirm", class: "btn bg-dark btn-primary" %>
+        <% end %>
       </li>
     <% end %>
   </ul>
