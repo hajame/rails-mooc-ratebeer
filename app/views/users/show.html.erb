@@ -20,7 +20,18 @@
 <div id="clubs">
   <h3>Member of</h3>
   <ul>
-    <% @user.beer_clubs.each do |beer_club| %>
+    <% @user.confirmed_clubs.each do |beer_club| %>
+      <li>
+        <%= link_to beer_club.name, beer_club %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="applications">
+  <h4>Applied membership of clubs</h4>
+  <ul>
+    <% @user.applied_clubs.each do |beer_club| %>
       <li>
         <%= link_to beer_club.name, beer_club %>
       </li>
@@ -29,9 +40,9 @@
 </div>
 
 <div id="ratings">
-  <p>
-    <strong>ratings</strong>
-  </p>
+  <h3>
+    Ratings
+  </h3>
   <ul>
     <% @user.ratings.sort_by { |r| r.to_s }.each_with_index do |rating, index| %>
       <li>

@@ -25,6 +25,14 @@ class User < ApplicationRecord
     BeerClub.where.not(id: memberships.map(&:beer_club_id)).to_a
   end
 
+  def applied_clubs
+    BeerClub.where(id: memberships.where(confirmed: false).map(&:beer_club_id)).to_a
+  end
+
+  def confirmed_clubs
+    BeerClub.where(id: memberships.where(confirmed: true).map(&:beer_club_id)).to_a
+  end
+
   # @param [BeerClub] beer_club
   def member?(beer_club)
     true unless not_member_of.include?(beer_club)

@@ -1,9 +1,20 @@
 <%= render @beer_club %>
 
 <div id="members">
-  <h3>Members</h3>
+  <h2>Members</h2>
   <ul>
-    <% @beer_club.users.each do |user| %>
+    <% @beer_club.confirmed_members.each do |user| %>
+      <li>
+        <%= link_to user.username, user %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="applicants">
+  <h4>Membership applications</h4>
+  <ul>
+    <% @beer_club.applicants.each do |user| %>
       <li>
         <%= link_to user.username, user %>
       </li>
