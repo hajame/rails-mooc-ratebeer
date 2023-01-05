@@ -31,6 +31,28 @@ describe "Beerlist page" do
     expect(rows[1]).to have_content "Lechte Weisse Weizen Ayinger"
     expect(rows[2]).to have_content "Nikolai Lager Koff"
   end
+
+  it "when STYLE is clicked shows order by beer style", js: true do
+    visit beerlist_path
+    find('#beertable').find('tr:nth-child(3)')
+    find('#style').click
+    rows = find('#beertable').find_all('.tablerow')
+
+    expect(rows[0]).to have_content "Nikolai Lager Koff"
+    expect(rows[1]).to have_content "Fastenbier Rauchbier Schlenkerla"
+    expect(rows[2]).to have_content "Lechte Weisse Weizen Ayinger"
+  end
+
+  it "when BREWERY is clicked shows order by brewery name", js: true do
+    visit beerlist_path
+    find('#beertable').find('tr:nth-child(3)')
+    find('#brewery').click
+    rows = find('#beertable').find_all('.tablerow')
+
+    expect(rows[0]).to have_content "Lechte Weisse Weizen Ayinger"
+    expect(rows[1]).to have_content "Nikolai Lager Koff"
+    expect(rows[2]).to have_content "Fastenbier Rauchbier Schlenkerla"
+  end
 end
 
 def setup_test_with_js

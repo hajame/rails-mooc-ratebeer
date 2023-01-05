@@ -36,7 +36,7 @@ BEERS.sortByName = () => {
 
 BEERS.sortByStyle = () => {
   BEERS.list.sort((a, b) => {
-    return a.style.beer_type.toUpperCase().localeCompare(b.name.toUpperCase())
+    return a.style.beer_type.toLowerCase().localeCompare(b.style.beer_type.toLowerCase())
   })
 }
 
