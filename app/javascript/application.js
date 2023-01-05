@@ -4,3 +4,6 @@
 //= require bootstrap-sprockets
 import "@hotwired/turbo-rails"
 import "controllers"
+import { hello } from "custom/utils";
+
+hello();

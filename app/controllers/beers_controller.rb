@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_is_admin, only: [:destroy]
   before_action :set_beer, only: %i[show edit update destroy]
   before_action :set_beer_constants, only: [:new, :edit]
@@ -14,6 +14,10 @@ class BeersController < ApplicationController
              when "rating" then @beers.sort_by(&:average_rating).reverse
              else @beers.sort_by(&:name)
              end
+  end
+
+  # returns beers in JSON only
+  def list
   end
 
   # GET /beers/1 or /beers/1.json
