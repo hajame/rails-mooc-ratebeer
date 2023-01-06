@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_is_admin, only: [:destroy]
-  before_action :invalidate_caches, except: %i[index show list new edit]
+  before_action :invalidate_list_caches, except: %i[index show list new edit]
   before_action :set_beer, only: %i[show edit update destroy]
   before_action :set_beer_constants, only: [:new, :edit]
 

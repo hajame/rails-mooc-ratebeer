@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  helper_method :invalidate_caches
 
   def current_user
     return nil if session[:user_id].nil?
@@ -17,9 +16,13 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, alert: 'Unauthorized request.' unless is_admin
   end
 
-  def invalidate_caches
+  def invalidate_list_caches
     expire_fragment("brewerylist")
     %w[beerlist-name beerlist-brewery beerlist-style beerlist-rating]
       .each { |f| expire_fragment(f) }
+  end
+
+  def clear_cache
+    Rails.cache.clear
   end
 end
