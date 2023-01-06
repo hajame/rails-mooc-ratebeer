@@ -1,4 +1,6 @@
-<%= render @beer %>
+<% cache @beer do %>
+  <%= render @beer %>
+<% end %>
 
 <% if current_user %>
   <h4>Rate this beer:</h4>
