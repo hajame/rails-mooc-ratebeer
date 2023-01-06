@@ -5,6 +5,9 @@ ruby "3.1.2"
 
 gem 'rubocop', '~> 1.41', require: false
 
+# Asynchronous processing within the same Rails process
+gem 'sucker_punch', '~> 3.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 

@@ -1,8 +1,13 @@
 class RatingsController < ApplicationController
   before_action :invalidate_list_caches, except: %i[index new]
 
-  # GET /ratings or /ratings.json
+  # GET /ratings or /ratings.json.
+  #
+  # Decided not to go async, instead updating
+  # the cache every once in a while. Users triggering the cache update
+  # will experience a long page delay.
   def index
+    # delay is purposefully set low to help with assessment and testing.
     delay = 2.minutes
     @recent = Rails.cache.fetch("recent_ratings", expires_in: delay) { Rating.recent }
     @top_beers = Rails.cache.fetch("top_beers", expires_in: delay) { Beer.top(3) }
