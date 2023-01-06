@@ -1,6 +1,7 @@
 class BeersController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_is_admin, only: [:destroy]
+  before_action :invalidate_caches, except: %i[index show list new edit]
   before_action :set_beer, only: %i[show edit update destroy]
   before_action :set_beer_constants, only: [:new, :edit]
 
@@ -44,7 +45,6 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
-        expire_beerlist_cache
         format.html { redirect_to beers_url, notice: "Beer was successfully created." }
         format.json { render :show, status: :created, location: @beer }
       else
@@ -59,7 +59,6 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
-        expire_beerlist_cache
         format.html { redirect_to beer_url(@beer), notice: "Beer was successfully updated." }
         format.json { render :show, status: :ok, location: @beer }
       else
@@ -73,7 +72,6 @@ class BeersController < ApplicationController
   def destroy
     respond_to do |format|
       if @beer.destroy
-        expire_beerlist_cache
         format.html { redirect_to beers_url, notice: "Beer was successfully destroyed." }
         format.json { head :no_content }
       else
@@ -84,11 +82,6 @@ class BeersController < ApplicationController
   end
 
   private
-
-  def expire_beerlist_cache
-    %w[beerlist-name beerlist-brewery beerlist-style beerlist-rating]
-      .each { |f| expire_fragment(f) }
-  end
 
   # Set constants for new/edit beer
   def set_beer_constants

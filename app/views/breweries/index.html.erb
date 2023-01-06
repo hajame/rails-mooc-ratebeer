@@ -5,59 +5,65 @@
   </span>
 </h1>
 
-<h2>Active</h2>
+<% cache "brewerylist", skip_digest: true do %>
+  
+  <div id="brewery_list">
+    <h2>Active</h2>
 
-<p>Number of active breweries: <%= @active_breweries.count %></p>
+    <p>Number of active breweries: <%= @active_breweries.count %></p>
 
-<div id="active_breweries">
-  <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Founded</th>
-      <th>Beers</th>
-      <th>Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @active_breweries.each do |brewery| %>
-      <tr>
-        <td><%= link_to brewery.name, brewery %></td>
-        <td><%= brewery.year %></td>
-        <td><%= brewery.beers.count %></td>
-        <td><%= round(brewery.average_rating) %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+    <div id="active_breweries">
+      <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Founded</th>
+          <th>Beers</th>
+          <th>Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @active_breweries.each do |brewery| %>
+          <tr>
+            <td><%= link_to brewery.name, brewery %></td>
+            <td><%= brewery.year %></td>
+            <td><%= brewery.beers.count %></td>
+            <td><%= round(brewery.average_rating) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<h2>Retired</h2>
+    <h2>Retired</h2>
 
-<p>Number of retired breweries: <%= @retired_breweries.count %></p>
+    <p>Number of retired breweries: <%= @retired_breweries.count %></p>
 
-<div id="retired_breweries">
-  <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Founded</th>
-      <th>Beers</th>
-      <th>Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @retired_breweries.each do |brewery| %>
-      <tr>
-        <td><%= link_to brewery.name, brewery %></td>
-        <td><%= brewery.year %></td>
-        <td><%= brewery.beers.count %></td>
-        <td><%= round(brewery.average_rating) %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+    <div id="retired_breweries">
+      <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Founded</th>
+          <th>Beers</th>
+          <th>Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @retired_breweries.each do |brewery| %>
+          <tr>
+            <td><%= link_to brewery.name, brewery %></td>
+            <td><%= brewery.year %></td>
+            <td><%= brewery.beers.count %></td>
+            <td><%= round(brewery.average_rating) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% end %>
 
 <p>
   <%= link_to "List of beers", beers_path %>

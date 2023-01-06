@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_is_admin, only: [:destroy]
+  before_action :invalidate_caches, except: %i[index show list new edit]
   before_action :set_brewery, only: %i[show edit update destroy]
 
   # GET /breweries or /breweries.json

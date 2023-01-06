@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+  before_action :invalidate_caches, except: %i[index new]
+
   # GET /ratings or /ratings.json
   def index
     @ratings = Rating.all
