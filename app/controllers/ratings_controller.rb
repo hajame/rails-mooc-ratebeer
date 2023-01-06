@@ -3,11 +3,12 @@ class RatingsController < ApplicationController
 
   # GET /ratings or /ratings.json
   def index
-    @recent = Rating.recent
-    @top_beers = Beer.top(3)
-    @top_styles = Style.top(3)
-    @top_breweries = Brewery.top(3)
-    @top_users = User.top(3)
+    delay = 2.minutes
+    @recent = Rails.cache.fetch("recent_ratings", expires_in: delay) { Rating.recent }
+    @top_beers = Rails.cache.fetch("top_beers", expires_in: delay) { Beer.top(3) }
+    @top_styles = Rails.cache.fetch("top_styles", expires_in: delay) { Style.top(3) }
+    @top_breweries = Rails.cache.fetch("top_breweries", expires_in: delay) { Brewery.top(3) }
+    @top_users = Rails.cache.fetch("top_users", expires_in: delay) { User.top(3) }
   end
 
   def new
