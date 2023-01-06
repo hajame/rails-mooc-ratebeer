@@ -1,20 +1,21 @@
 <h1>Beers</h1>
 
-<table id="beers" class="table table-dark table-striped">
-  <thead>
-  <th><%= link_to "Name", beers_path(order: "name") %></th>
-  <th><%= link_to "Style", beers_path(order: "style") %></th>
-  <th><%= link_to "Brewery", beers_path(order: "brewery") %></th>
-  <th><%= link_to "Rating", beers_path(order: "rating") %></th>
-  </thead>
-  <% @beers.each do |beer| %>
-    <tr>
-      <td><%= link_to beer.name, beer %></td>
-      <td><%= link_to beer.style.beer_type, beer.style %></td>
-      <td><%= link_to beer.brewery.name, beer.brewery %></td>
-      <td><%= beer.average_rating %></td>
-    </tr>
-  <% end %>
-</table>
-
+<% cache "beerlist-#{@order}", skip_digest: true do %>
+  <table id="beers" class="table table-dark table-striped">
+    <thead>
+    <th><%= link_to "Name", beers_path(order: "name") %></th>
+    <th><%= link_to "Style", beers_path(order: "style") %></th>
+    <th><%= link_to "Brewery", beers_path(order: "brewery") %></th>
+    <th><%= link_to "Rating", beers_path(order: "rating") %></th>
+    </thead>
+    <% @beers.each do |beer| %>
+      <tr>
+        <td><%= link_to beer.name, beer %></td>
+        <td><%= link_to beer.style.beer_type, beer.style %></td>
+        <td><%= link_to beer.brewery.name, beer.brewery %></td>
+        <td><%= beer.average_rating %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 <%= link_to("New beer", new_beer_path, class: "btn btn-primary") unless current_user.nil? %>

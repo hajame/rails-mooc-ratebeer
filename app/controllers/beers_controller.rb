@@ -6,9 +6,12 @@ class BeersController < ApplicationController
 
   # GET /beers or /beers.json
   def index
+    @order = params[:order] || 'name'
+    return if request.format.html? && fragment_exist?("beerlist-#{@order}")
+
     @beers = Beer.includes(:brewery, :style, :ratings).all
 
-    @beers = case params[:order]
+    @beers = case @order
              when "brewery" then @beers.sort_by { |b| b.brewery.name }
              when "style" then @beers.sort_by { |b| b.style.beer_type }
              when "rating" then @beers.sort_by(&:average_rating).reverse
@@ -41,6 +44,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
+        expire_beerlist_cache
         format.html { redirect_to beers_url, notice: "Beer was successfully created." }
         format.json { render :show, status: :created, location: @beer }
       else
@@ -55,6 +59,7 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
+        expire_beerlist_cache
         format.html { redirect_to beer_url(@beer), notice: "Beer was successfully updated." }
         format.json { render :show, status: :ok, location: @beer }
       else
@@ -66,15 +71,24 @@ class BeersController < ApplicationController
 
   # DELETE /beers/1 or /beers/1.json
   def destroy
-    @beer.destroy
-
     respond_to do |format|
-      format.html { redirect_to beers_url, notice: "Beer was successfully destroyed." }
-      format.json { head :no_content }
+      if @beer.destroy
+        expire_beerlist_cache
+        format.html { redirect_to beers_url, notice: "Beer was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to beers_url, alert: "Destroying beer failed." }
+        format.json { head :not_modified }
+      end
     end
   end
 
   private
+
+  def expire_beerlist_cache
+    %w[beerlist-name beerlist-brewery beerlist-style beerlist-rating]
+      .each { |f| expire_fragment(f) }
+  end
 
   # Set constants for new/edit beer
   def set_beer_constants
