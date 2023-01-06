@@ -10,6 +10,7 @@ describe "Breweries page" do
 
   describe "when breweries exists" do
     before :each do
+      Rails.cache.clear
       @breweries = %w[Koff Karjala Schlenkerla]
       year = 1896
       @breweries.each do |brewery_name|
