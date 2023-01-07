@@ -3,9 +3,9 @@ class RatingsController < ApplicationController
 
   # GET /ratings or /ratings.json.
   #
-  # Decided not to go async, instead updating
-  # the cache every once in a while. Users triggering the cache update
-  # will experience a long page delay.
+  # Decided not to go async, instead updating the cache every once in a while.
+  # Users triggering the cache update will experience a long page delay.
+  # Also added eager loading to *.top(amount) methods and Rating.recent, removing n+1 SQL queries.
   def index
     # delay is purposefully set low to help with assessment and testing.
     delay = 2.minutes
