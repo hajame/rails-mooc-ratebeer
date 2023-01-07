@@ -61,11 +61,11 @@ describe "User" do
         FactoryBot.create :rating, user: user2, beer: beer2, score: 10
 
         visit user_path(user)
-        expect(page).to have_content "iso 3 5"
-        expect(page).not_to have_content "Karhu 10"
+        expect(page).to have_content "iso 3: 5"
+        expect(page).not_to have_content "Karhu: 10"
 
         visit user_path(user2)
-        expect(page).to have_content "Karhu 10"
+        expect(page).to have_content "Karhu: 10"
         expect(page).not_to have_content "iso 3 5"
       end
 
@@ -74,12 +74,12 @@ describe "User" do
         FactoryBot.create :rating, user: user, beer: beer2, score: 10
 
         visit user_path(user)
-        expect(page).to have_content "iso 3 5"
-        expect(page).to have_content "Karhu 10"
+        expect(page).to have_content "iso 3: 5"
+        expect(page).to have_content "Karhu: 10"
 
         click_on "button_delete_rating_1"
-        expect(page).not_to have_content "iso 3 5"
-        expect(page).to have_content "Karhu 10"
+        expect(page).not_to have_content "iso 3: 5"
+        expect(page).to have_content "Karhu: 10"
       end
     end
   end
