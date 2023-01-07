@@ -1,4 +1,5 @@
 class Beer < ApplicationRecord
+  extend Rateable
   belongs_to :brewery, touch: true
   belongs_to :style, touch: true
 
@@ -8,10 +9,6 @@ class Beer < ApplicationRecord
   validates :name, presence: true
 
   include RatingAverage
-
-  def self.top(limit)
-    Beer.all.sort_by { |b| -b.average_rating }.take(limit)
-  end
 
   def to_s
     "#{name}, #{brewery.name}"

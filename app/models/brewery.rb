@@ -1,4 +1,5 @@
 class Brewery < ApplicationRecord
+  extend Rateable
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
@@ -10,10 +11,6 @@ class Brewery < ApplicationRecord
   scope :retired, -> { where active: [nil, false] }
 
   include RatingAverage # module mixin
-
-  def self.top(limit)
-    Brewery.all.sort_by { |b| -b.average_rating }.take(limit)
-  end
 
   def print_report
     puts name
