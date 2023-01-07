@@ -11,22 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <%= form.label :name, class: "form-label" %>
+  <%= form.text_field :name, class: "form-control text-bg-dark  mb-3" %>
+
+  <%= form.label :year, class: "form-label" %>
+  <%= form.number_field :year, class: "form-control text-bg-dark  mb-3" %>
+
+  <div class="form-check mb-3">
+    <%= form.label :active, class: "form-check-label" %>
+    <%= form.check_box :active, class: "form-check-input" %>
   </div>
 
-  <div>
-    <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
-  </div>
+  <%= form.submit class: "btn btn-outline-primary" %>
 
-  <div>
-    <%= form.label :active, style: "display: block" %>
-    <%= form.check_box :active %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

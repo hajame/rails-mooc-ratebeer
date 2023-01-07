@@ -45,10 +45,10 @@
   </h3>
   <ul>
     <% @user.ratings.sort_by { |r| r.to_s }.each_with_index do |rating, index| %>
-      <li>
-        <%= rating.beer.name %> <%= rating.score %>
+      <li class="mb-1">
+        <div class="mt-1 float-start"><%= rating.beer.name %>: <%= rating.score %></div>
         <% if @user == current_user %>
-          <%= button_to 'delete', rating, method: :delete, class: "btn btn-sm btn-secondary", id: "button_delete_rating_#{index}",
+          <%= button_to 'delete', rating, method: :delete, class: "btn btn-outline-danger btn-sm ms-2", id: "button_delete_rating_#{index}",
                         form: {
                           data: {
                             turbo_confirm: "Are you sure you want to delete the following rating?\n#{rating}"

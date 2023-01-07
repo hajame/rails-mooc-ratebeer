@@ -11,17 +11,11 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :beer_type, style: "display: block" %>
-    <%= form.text_field :beer_type %>
-  </div>
+  <%= form.label :beer_type, class: "form-label" %>
+  <%= form.text_field :beer_type, class: "form-control text-bg-dark  mb-3" %>
+  <%= form.label :description, class: "form-label" %>
+  <%= form.text_area :description, class: "form-control text-bg-dark  mb-3" %>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
+  <%= form.submit class: "btn btn-outline-primary" %>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
