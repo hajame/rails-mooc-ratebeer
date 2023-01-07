@@ -28,8 +28,8 @@ BREWS.show = () => {
   document.querySelectorAll(".tablerow").forEach((el) => el.remove())
   const table = document.getElementById("brewerylist")
 
-  BREWS.list.forEach((beer) => {
-    const tr = createTableRow(beer)
+  BREWS.list.forEach((brewery) => {
+    const tr = createTableRow(brewery)
     table.appendChild(tr)
   })
 }
@@ -39,6 +39,7 @@ BREWS.sortByName = () => {
     return a.name.toUpperCase().localeCompare(b.name.toUpperCase())
   })
 }
+
 BREWS.sortByFounded = () => {
   BREWS.list.sort((a, b) => {
     return a.year - b.year
