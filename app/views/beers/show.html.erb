@@ -8,7 +8,7 @@
   <%= form_with(model: @rating) do |form| %>
     <%= form.hidden_field :beer_id, class: "form-label" %>
     score: <%= form.number_field :score, class: "form-control text-bg-dark  mb-3" %>
-    <%= form.submit "Create rating", class: "btn bg-dark btn-primary mb-3" %>
+    <%= form.submit "Create rating", class: "btn btn-outline-primary mb-3" %>
   <% end %>
 <% end %>
 

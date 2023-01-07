@@ -3,7 +3,7 @@
 <%= form_with url: places_path, method: :post do |form| %>
   <label for="city" class="form-label">City</label>
   <%= form.text_field :city, class: "form-control text-bg-dark  mb-3" %>
-  <%= form.submit "Search", class: "btn bg-dark btn-primary mb-4" %>
+  <%= form.submit "Search", class: "btn btn-outline-primary mb-4" %>
 <% end %>
 
 <% if @weather %>

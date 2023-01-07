@@ -5,7 +5,7 @@
   <% end %>
 </h1>
 <% if current_user&.admin? %>
-  <%= link_to @user.closed ? "Open account" : "Close account", toggle_closed_user_path(@user.id), data: { turbo_method: "post" }, class: "btn bg-dark btn-danger" %>
+  <%= link_to @user.closed ? "Open account" : "Close account", toggle_closed_user_path(@user.id), data: { turbo_method: "post" }, class: "btn btn-outline-danger" %>
 <% end %>
 <p>
   Has made <%= @user.ratings.count %> ratings,
@@ -28,7 +28,7 @@
   </ul>
 </div>
 
-<div id="applications">
+<div id="">
   <h4>Applied membership of clubs</h4>
   <ul>
     <% @user.applied_clubs.each do |beer_club| %>
@@ -66,6 +66,6 @@
 <% if @user == current_user %>
   <p>
     <%= link_to "Change password", edit_user_path(@user) %>
-    <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
+    <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-outline-danger" %>
   </p>
 <% end %>

@@ -16,37 +16,40 @@
   <ul>
     <% @beer_club.applicants.each do |user| %>
       <!-- TODO: Confirm button is on the same row as username -->
-      <li>
-        <%= link_to user.username, user %>
+      <li class="mb-1">
+        <%= link_to user.username, user, class: "float-start" %>
+
         <% if current_user && current_user.confirmed_clubs.include?(@beer_club) %>
           <%= form_with url: confirm_membership_beer_club_path do |form| %>
             <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
             <%= form.hidden_field :user_id, value: user.id %>
-            <%= form.submit "Confirm", class: "btn bg-dark btn-primary" %>
+            <%= form.submit "Confirm", class: "btn btn-outline-primary btn-sm ms-2" %>
           <% end %>
         <% end %>
       </li>
     <% end %>
   </ul>
 </div>
-
-<% if current_user && !current_user.member?(@beer_club) %>
-  <%= form_with(model: @membership) do |form| %>
-    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the beer club", class: "btn bg-dark btn-primary" %>
+<p>
+  <% if current_user && !current_user.member?(@beer_club) %>
+    <%= form_with(model: @membership) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join the beer club", class: "btn btn-outline-primary" %>
+    <% end %>
+  <% elsif current_user %>
+    <%= form_with(model: @membership, method: :delete) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "End the membership", class: "btn btn-outline-secondary" %>
+    <% end %>
   <% end %>
-<% elsif current_user %>
-  <%= form_with(model: @membership, method: :delete) do |form| %>
-    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "End the membership", class: "btn btn-secondary" %>
-  <% end %>
-<% end %>
+</p>
 
 <p>
   <%= edit_and_destroy_buttons(@beer_club) %>
 </p>
+
 <div>
   <%= link_to "Back to beer clubs", beer_clubs_path %>
 </div>

@@ -6,7 +6,7 @@
 </h1>
 
 <% cache "brewerylist", skip_digest: true do %>
-  
+
   <div id="brewery_list">
     <h2>Active</h2>
 
@@ -68,4 +68,4 @@
 <p>
   <%= link_to "List of beers", beers_path %>
 </p>
-<%= link_to "New brewery", new_brewery_path, class: "btn btn-primary" unless current_user.nil? %>
+<%= link_to "New brewery", new_brewery_path, class: "btn btn-outline-primary" unless current_user.nil? %>
